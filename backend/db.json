@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Caneta BIC Preta",
+      "price": 5.89
+    },
+    {
+      "name": "PlayStation 5",
+      "price": "5000.00",
+      "id": 2
+    }
+  ]
+}
