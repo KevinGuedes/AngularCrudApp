@@ -19,6 +19,16 @@
 
 .header .title-group {
     padding-left: 25px;
+  
+}
+
+.header .title-group a {
+    color: black;
+}
+    
+
+.header .title-group:hover {
+    cursor: pointer;
 }
 
 .header .title-group {
