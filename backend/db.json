@@ -9,6 +9,16 @@
       "name": "PlayStation 5",
       "price": "5000.00",
       "id": 2
+    },
+    {
+      "name": "Veio do front",
+      "price": "1254.99",
+      "id": 3
+    },
+    {
+      "name": "Test",
+      "price": "4546",
+      "id": 4
     }
   ]
 }
