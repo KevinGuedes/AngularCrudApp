@@ -6,8 +6,8 @@
       "price": 5.89
     },
     {
-      "name": "PlayStation 5",
-      "price": "5000.00",
+      "name": "PlayStation 5 Pro",
+      "price": "7000.00",
       "id": 2
     },
     {
@@ -19,6 +19,14 @@
       "name": "Test",
       "price": "4546",
       "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "name": "Kevin Santos Guedes",
+      "price": "32432",
+      "id": 6
     }
   ]
 }
