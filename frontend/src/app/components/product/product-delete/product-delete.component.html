@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Edit Product</mat-card-title>
+    <mat-card-title>Delete Product</mat-card-title>
     <form>
         <mat-form-field>
             <input matInput placeholder="Name" [value]="product.name" name="name" disabled>
@@ -9,6 +9,6 @@
         </mat-form-field>
     </form>
 
-    <button mat-raised-button (click)="deleteProduct()" color="warning">Delete</button>
+    <button mat-raised-button (click)="deleteProduct()" color="warn">Delete</button>
     <button mat-raised-button (click)="cancel()">Cancel</button>
 </mat-card>
