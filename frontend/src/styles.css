@@ -29,3 +29,7 @@ body {
     background-color: rgb(227, 94, 107);
     color: #fff;
 }
+
+.mat-simple-snackbar-action {
+        color: white !important;
+}
