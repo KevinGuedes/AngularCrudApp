@@ -24,7 +24,6 @@ app
 
 //#region CRUD
 app.post('/products', (req, res) => {
-
     try {
         Database
             .then(
@@ -39,7 +38,6 @@ app.post('/products', (req, res) => {
                 }
             )
     } catch (err) {
-
         console.log(err.message)
 
         res.send({
@@ -48,8 +46,7 @@ app.post('/products', (req, res) => {
     }
 })
 
-app.put('/products', (req, res) => {
-    console.log(jsonProductToDTO(req.body))
+app.put('/products/:id', (req, res) => {
     try {
         Database
             .then(
@@ -63,7 +60,6 @@ app.put('/products', (req, res) => {
                 }
             )
     } catch (err) {
-
         console.log(err.message)
 
         res.send({
@@ -73,7 +69,6 @@ app.put('/products', (req, res) => {
 })
 
 app.get('/products', (req, res) => {
-
     Database
         .then(
             async (db) => {
@@ -87,7 +82,6 @@ app.get('/products', (req, res) => {
 })
 
 app.delete('/products/:id', (req, res) => {
-
     Database
         .then(
             async (db) => {
@@ -104,7 +98,6 @@ app.delete('/products/:id', (req, res) => {
 //#endregion
 
 app.get('/products/:id', (req, res) => {
-
     Database
         .then(
             async (db) => {
