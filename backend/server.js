@@ -13,6 +13,7 @@ const {
     readProduct,
     deleteProduct,
     readProductById,
+    readProductByPriceRange
 } = require('./database/procedures')
 
 
@@ -89,7 +90,7 @@ app.delete('/products/:id', (req, res) => {
                 })
             },
             (error) => {
-                res.send(error.message)
+                res.status(200).send(error.message)
             }
         )
 })
@@ -103,7 +104,20 @@ app.get('/products/:id', (req, res) => {
                 res.json(product)
             },
             (error) => {
-                res.send(error.message)
+                res.status(200).send(error.message)
+            }
+        )
+})
+
+app.post('/products/search', (req, res) => {
+    Database
+        .then(
+            async (db) => {
+                const products = await readProductByPriceRange(db, req.body.minPrice, req.body.maxPrice)
+                res.json(products)
+            },
+            (error) => {
+                res.status(200).send(error.message)
             }
         )
 })

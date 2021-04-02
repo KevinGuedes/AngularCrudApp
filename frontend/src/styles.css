@@ -30,6 +30,11 @@ body {
     color: #fff;
 }
 
+.msg-not-found {
+    background-color: rgb(245, 214, 41);
+    color: #fff;
+}
+
 .mat-simple-snackbar-action {
         color: white !important;
 }

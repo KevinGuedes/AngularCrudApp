@@ -1,6 +1,21 @@
-<!-- criado via ng generate @angular/material:table <component-name> -->
-<!-- https://material.angular.io/guide/schematics -->
-<div class="mat-elevation-z4">
+<mat-card>
+    <mat-card-title>Search Product</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Min Price (R$)" [(ngModel)]="minPrice" name="minPrice" type="number" step="0.01">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Max Price (R$)" [(ngModel)]="maxPrice" name="maxPrice" type="number" step="0.01">
+        </mat-form-field>
+        
+    </form>
+
+    <button mat-raised-button (click)="searchProduct()" color="primary">Search</button>
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+</mat-card>
+
+
+<div class="mat-elevation-z4" *ngIf="showSearchTable">
     <table mat-table [dataSource]="products">
         <!-- Id Column -->
         <ng-container matColumnDef="id">

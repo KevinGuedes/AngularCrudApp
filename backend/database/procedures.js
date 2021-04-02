@@ -49,10 +49,22 @@ async function readProductById(db, id) {
     `)
 }
 
+async function readProductByPriceRange(db, minPrice, maxPrice) {
+    return await db.all(`
+        SELECT *
+        FROM 
+            products
+        WHERE 
+            price > ${minPrice} AND
+            price < ${maxPrice}
+    `)
+}
+
 module.exports = {
     insertProduct,
     updateProduct,
     readProduct,
     readProductById,
-    deleteProduct
+    deleteProduct,
+    readProductByPriceRange
 }

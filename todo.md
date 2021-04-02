@@ -1,0 +1,2 @@
+- [ ] Tabelas com paginação - Schematics
+- [ ] Compra de produtos e atualização de estoque

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Product } from './product.model';
@@ -26,6 +26,15 @@ export class ProductService {
     })
   }
 
+  notFoundMessage(message: string): void {
+    this.snackBar.open(message, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      panelClass: ['msg-not-found']
+    })
+  }
+
   create(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUlr, product).pipe(
       map(p => p),
@@ -43,6 +52,24 @@ export class ProductService {
   readById(id: number): Observable<Product> {
     const url = `${this.baseUlr}/${id}`;
     return this.http.get<Product>(url).pipe(
+      map(p => p),
+      catchError(error => this.errorHandler(error))
+    );
+  }
+
+  readByPriceRange(minPrice: number, maxPrice: number): Observable<Product[]> {
+    const url = `${this.baseUlr}/search`;
+
+    if (minPrice > maxPrice) {
+      [maxPrice, minPrice] = [minPrice, maxPrice]
+    }
+
+    const range = {
+      maxPrice: maxPrice,
+      minPrice: minPrice
+    }
+
+    return this.http.post<Product[]>(url, range).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
     );

@@ -1,0 +1,26 @@
+form { 
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+button { 
+    margin: 20px 15px 0 0;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.edit > i {
+    color: #d9cd26;
+}
+
+.delete > i{
+    color: #e35e6b;
+}
