@@ -4,6 +4,7 @@ function jsonProductToDTO(jsonProduct) {
     }
     else {
         return {
+            id: jsonProduct.id || null,
             name: jsonProduct.name,
             price: jsonProduct.price,
             description: jsonProduct.description || null,

@@ -49,15 +49,14 @@ app.post('/products', (req, res) => {
 })
 
 app.put('/products', (req, res) => {
-
+    console.log(jsonProductToDTO(req.body))
     try {
         Database
             .then(
                 async (db) => {
-                    await updateProduct(db, jsonProductToDTO(req.body))
-                    res.send({
-                        success: true,
-                    })
+                    const newProduct = jsonProductToDTO(req.body)
+                    await updateProduct(db, newProduct)
+                    res.send(newProduct)
                 },
                 (error) => {
                     res.send(error.message)
@@ -106,7 +105,6 @@ app.delete('/products/:id', (req, res) => {
 
 app.get('/products/:id', (req, res) => {
 
-    console.log(req.params.id)
     Database
         .then(
             async (db) => {
@@ -118,7 +116,6 @@ app.get('/products/:id', (req, res) => {
             }
         )
 })
-
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}/`)
