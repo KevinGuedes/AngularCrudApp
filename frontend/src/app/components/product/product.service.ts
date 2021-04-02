@@ -32,6 +32,7 @@ export class ProductService {
       horizontalPosition: "right",
       verticalPosition: "top",
       panelClass: ['msg-not-found']
+
     })
   }
 
