@@ -39,7 +39,6 @@ app.post('/products', (req, res) => {
             )
     } catch (err) {
         console.log(err.message)
-
         res.send({
             success: false,
         })
@@ -61,7 +60,6 @@ app.put('/products/:id', (req, res) => {
             )
     } catch (err) {
         console.log(err.message)
-
         res.send({
             success: false,
         })
