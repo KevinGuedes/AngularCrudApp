@@ -1,21 +1,98 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 const Database = require('./database/database')
+const app = express()
+const port = 3001
+const {
+    jsonProductToDTO
+} = require('./mapping/productMapper')
 const {
     insertProduct,
     updateProduct,
     readProduct,
+    deleteProduct,
     readProductById,
 } = require('./database/procedures')
-const app = express()
-const port = 3001
 
-app.post('/products/create', (req, res) => {
 
-    Database.then(async (db) => {
-        await insertProduct(db)
-    })
+// Middlewares
+app
+    .use(cors())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+
+//#region CRUD
+app.post('/products', (req, res) => {
+
+    try {
+        Database
+            .then(
+                async (db) => {
+                    await insertProduct(db, jsonProductToDTO(req.body))
+                    res.send({
+                        success: true,
+                    })
+                },
+                (error) => {
+                    res.send(error.message)
+                }
+            )
+    } catch (err) {
+
+        console.log(err.message)
+
+        res.send({
+            success: false,
+        })
+    }
+})
+
+app.put('/products', (req, res) => {
+
+    try {
+        Database
+            .then(
+                async (db) => {
+                    await updateProduct(db, jsonProductToDTO(req.body))
+                    res.send({
+                        success: true,
+                    })
+                },
+                (error) => {
+                    res.send(error.message)
+                }
+            )
+    } catch (err) {
+
+        console.log(err.message)
+
+        res.send({
+            success: false,
+        })
+    }
+})
+
+app.get('/products', (req, res) => {
+
+    Database
         .then(
-            () => {
+            async (db) => {
+                const products = await readProduct(db)
+                res.json(products)
+            },
+            (error) => {
+                res.send(error.message)
+            }
+        )
+})
+
+app.delete('/products/:id', (req, res) => {
+
+    Database
+        .then(
+            async (db) => {
+                await deleteProduct(db, req.params.id)
                 res.send({
                     success: true,
                 })
@@ -25,45 +102,23 @@ app.post('/products/create', (req, res) => {
             }
         )
 })
-
-app.put('/products/update', (req, res) => {
-
-    Database
-        .then(
-            async (db) => {
-                res.send(await updateProduct(db))
-            },
-            (error) => {
-                res.send(error.message)
-            }
-        )
-})
-
-app.get('/products', (req, res) => {
-
-    Database
-        .then(
-            async (db) => {
-                res.send(await readProduct(db))
-            },
-            (error) => {
-                res.send(error.message)
-            }
-        )
-})
+//#endregion
 
 app.get('/products/:id', (req, res) => {
 
+    console.log(req.params.id)
     Database
         .then(
             async (db) => {
-                res.send(await readProductById(db, req.params.id))
+                const product = await readProductById(db, req.params.id)
+                res.json(product)
             },
             (error) => {
                 res.send(error.message)
             }
         )
 })
+
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}/`)
