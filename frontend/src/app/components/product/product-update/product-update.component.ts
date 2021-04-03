@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
@@ -15,7 +16,8 @@ export class ProductUpdateComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute //pegar o id da url
+    private route: ActivatedRoute, //pegar o id da url
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class ProductUpdateComponent implements OnInit {
 
   updateProduct(): void {
     this.productService.update(this.product).subscribe(() => {
-      this.productService.showMessage('Product updated');
+      this.customSnackBarService.successMessage('Product updated');
       this.router.navigate(['/products']);
     })
   }

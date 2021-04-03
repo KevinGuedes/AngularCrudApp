@@ -1,3 +1,4 @@
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -14,26 +15,9 @@ export class ProductService {
 
   constructor(
     private snackBar: MatSnackBar,
-    private http: HttpClient
+    private http: HttpClient,
+    private customSnackBarService: CustomSnackBarService
   ) { }
-
-  showMessage(message: string, isError: boolean = false): void {
-    this.snackBar.open(message, 'X', { //pode ser qualquer nome além do x apra fechar a notificação
-      duration: 3000,
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-success']
-    })
-  }
-
-  notFoundMessage(message: string): void {
-    this.snackBar.open(message, 'X', {
-      duration: 3000,
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      panelClass: ['msg-not-found']
-    })
-  }
 
   create(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUlr, product).pipe(
@@ -92,7 +76,7 @@ export class ProductService {
   }
 
   errorHandler(error: any): Observable<any> {
-    this.showMessage("An error has occurred", true)
+    this.customSnackBarService.errorMessage("An error has occurred")
     return EMPTY
   }
 }

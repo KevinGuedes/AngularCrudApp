@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from './../product.service'
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
+import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
 
 @Component({
   selector: 'app-product-create',
@@ -19,7 +20,8 @@ export class ProductCreateComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class ProductCreateComponent implements OnInit {
 
   createProduct(): void {
     this.productService.create(this.product).subscribe(() => {
-      this.productService.showMessage('Product created')
+      this.customSnackBarService.successMessage('Product created')
       this.router.navigate(['/products'])
     })
   }

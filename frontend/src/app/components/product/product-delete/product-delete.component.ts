@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
@@ -15,7 +16,8 @@ export class ProductDeleteComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ProductDeleteComponent implements OnInit {
 
   deleteProduct(): void {
     this.productService.delete(Number(this.product.id)).subscribe(() => {
-      this.productService.showMessage('Product deleted');
+      this.customSnackBarService.warningMessage('Product deleted');
       this.router.navigate(["/products"]);
     })
   }
