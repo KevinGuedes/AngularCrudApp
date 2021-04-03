@@ -2,6 +2,11 @@ table {
     width: 100%;
 }
 
+.columns-fixed {
+    table-layout: fixed;
+    width: 100%;
+}
+
 .edit {
     margin-right: 10px;
 }
@@ -12,4 +17,8 @@ table {
 
 .delete > i{
     color: #e35e6b;
+}
+
+.filter-field {
+    margin-left: 20px;
 }

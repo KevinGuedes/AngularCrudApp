@@ -1,2 +1,3 @@
-- [ ] Tabelas com paginação - Schematics
+- [x] Tabelas com paginação - Schematics
+- [ ] Filtro por nome nas tabelas
 - [ ] Compra de produtos e atualização de estoque

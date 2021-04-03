@@ -26,4 +26,8 @@ export class ProductReadComponent implements OnInit {
     })
   }
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

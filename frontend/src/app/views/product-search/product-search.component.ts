@@ -39,7 +39,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProduct(): void {
-    this.productService.readByPriceRange(this.minPrice, this.maxPrice).subscribe(products => {
+    this.productService.readByPriceRange(this.minPrice, /*this.maxPrice*/ 100000000).subscribe(products => {
       this.dataSource = new MatTableDataSource(products)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -51,6 +51,11 @@ export class ProductSearchComponent implements OnInit {
         this.customSnackBarService.warningMessage('No results found');
       }
     })
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   cancel(): void {

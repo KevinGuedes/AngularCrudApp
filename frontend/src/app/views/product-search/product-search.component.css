@@ -3,10 +3,23 @@ button {
 }
 
 table {
-    margin-top: 20px;
+    padding: 16px;
     width: 100%;
+}
+
+.columns-fixed {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-container {
+    margin-top: 20px;
 }
 
 .buy > i {
     color: #34d170;
+}
+
+.filter-field {
+    margin: 15px 20px 0;
 }
