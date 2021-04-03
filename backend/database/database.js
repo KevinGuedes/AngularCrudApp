@@ -9,6 +9,11 @@ function execute(db) {
             description TEXT NULL,
             amount BIGINT NULL
         );
+        
+        CREATE TABLE IF NOT EXISTS category (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL
+        );
     `)
 }
 module.exports = Database.open(__dirname + '/database.sqlite').then(execute)

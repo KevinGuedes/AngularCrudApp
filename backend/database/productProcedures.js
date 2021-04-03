@@ -16,7 +16,7 @@ async function insertProduct(db, product) {
     `)
 }
 
-async function updateProduct(db, product) {
+async function updateProduct(db, product, id) {
 
     await db.run(`
         UPDATE products 
@@ -26,7 +26,7 @@ async function updateProduct(db, product) {
             description = "${product.description}",
             amount = ${product.amount}
         WHERE 
-            id = ${product.id}
+            id = ${id}
     `)
 }
 
