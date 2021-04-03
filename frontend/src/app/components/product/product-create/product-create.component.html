@@ -13,8 +13,13 @@
         <mat-form-field>
             <input matInput placeholder="Description" [(ngModel)]="product.description" name="description">
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Category" [(ngModel)]="product.categoryId" name="categoryId">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="product.categoryId" name="categoryId">
+                <mat-option value="">Category</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
+            </mat-select>
         </mat-form-field>
     </form>
 

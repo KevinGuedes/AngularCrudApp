@@ -32,7 +32,9 @@ import { registerLocaleData } from '@angular/common';
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { ProductSearchComponent } from './views/product-search/product-search.component';
-import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component'
+import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component';
+import { CategoryReadComponent } from './components/category/category-read/category-read.component'
+import { MatSelectModule } from '@angular/material/select';
 
 registerLocaleData(localePt)
 
@@ -51,7 +53,8 @@ registerLocaleData(localePt)
     ProductUpdateComponent,
     ProductDeleteComponent,
     ProductSearchComponent,
-    CustomSnackBarComponent
+    CustomSnackBarComponent,
+    CategoryReadComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ registerLocaleData(localePt)
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule
   ],
   providers: [{
     provide: LOCALE_ID,

@@ -3,6 +3,8 @@ import { ProductService } from './../product.service'
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
 import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
+import { CategoryService } from '../../category/category.service';
+import { Category } from '../../category/category.model';
 
 @Component({
   selector: 'app-product-create',
@@ -10,6 +12,8 @@ import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
+
+  categories: Category[];
 
   product: Product = {
     name: '',
@@ -22,10 +26,15 @@ export class ProductCreateComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private customSnackBarService: CustomSnackBarService
+    private customSnackBarService: CustomSnackBarService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
+    this.categoryService.read().subscribe(categories => {
+      console.log(categories)
+      this.categories = categories
+    })
   }
 
   createProduct(): void {
