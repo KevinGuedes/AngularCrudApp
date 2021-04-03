@@ -2,12 +2,21 @@
     <mat-card-title>Search Product</mat-card-title>
     <form>
         <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="productName" name="productName">
+        </mat-form-field>
+        <mat-form-field>
             <input matInput placeholder="Min Price (R$)" [(ngModel)]="minPrice" name="minPrice" type="number" step="0.01">
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Max Price (R$)" [(ngModel)]="maxPrice" name="maxPrice" type="number" step="0.01">
         </mat-form-field>
-        
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="categoryId" name="categoryId">
+                <mat-option value="" selected hidden>All</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 
     <button mat-raised-button (click)="searchProduct()" color="primary">Search</button>
@@ -81,7 +90,7 @@
     <mat-paginator #paginator
       [length]="dataSource?.data?.length"
       [pageIndex]="0"
-      [pageSize]="3"
-      [pageSizeOptions]="[5, 10, 15, 30]">
+      [pageSize]="4"
+      [pageSizeOptions]="[4]">
   </mat-paginator>
 </div>

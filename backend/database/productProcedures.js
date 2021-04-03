@@ -78,26 +78,74 @@ async function readProductById(db, id) {
     `)
 }
 
-async function readProductByPriceRange(db, minPrice, maxPrice) {
-    return await db.all(`
-        SELECT
-            P.id,
-            name,
-            price,
-            description,
-            amount,
-            category,
-            categoryId
-        FROM
-            products as P
-        INNER JOIN
-            category as C
-        ON
-            P.categoryId = C.id
-        WHERE 
-            price > ${minPrice} AND
-            price < ${maxPrice}
-    `)
+async function readProductByPriceRangeAndCategory(db, minPrice, maxPrice, categoryId, productName) {
+
+    if (productName && categoryId) {
+        return await db.all(`
+            SELECT
+                P.id,
+                name,
+                price,
+                description,
+                amount,
+                category,
+                categoryId
+            FROM
+                products as P
+            INNER JOIN
+                category as C
+            ON
+                P.categoryId = C.id
+            WHERE 
+                price > ${minPrice} AND
+                price < ${maxPrice} AND
+                P.categoryId = ${categoryId} AND
+                name like "%${productName}%"
+        `)
+    }
+    else if (categoryId && !productName) {
+        return await db.all(`
+            SELECT
+                P.id,
+                name,
+                price,
+                description,
+                amount,
+                category,
+                categoryId
+            FROM
+                products as P
+            INNER JOIN
+                category as C
+            ON
+                P.categoryId = C.id
+            WHERE 
+                price > ${minPrice} AND
+                price < ${maxPrice} AND
+                P.categoryId = ${categoryId} AND
+                name like "%${productName}%"
+        `)
+    } else {
+        return await db.all(`
+            SELECT
+                P.id,
+                name,
+                price,
+                description,
+                amount,
+                category,
+                categoryId
+            FROM
+                products as P
+            INNER JOIN
+                category as C
+            ON
+                P.categoryId = C.id
+            WHERE 
+                price > ${minPrice} AND
+                price < ${maxPrice}
+        `)
+    }
 }
 
 module.exports = {
@@ -106,5 +154,5 @@ module.exports = {
     readProduct,
     readProductById,
     deleteProduct,
-    readProductByPriceRange
+    readProductByPriceRangeAndCategory
 }
