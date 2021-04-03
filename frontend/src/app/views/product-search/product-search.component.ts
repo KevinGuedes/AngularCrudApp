@@ -13,7 +13,7 @@ import { HeaderService } from 'src/app/components/template/header/header.service
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
-  showSearchTable: boolean = true;
+  hideSearchTable: boolean = true;
   minPrice: number = 0;
   maxPrice: number = 0;
   dataSource: MatTableDataSource<Product>;
@@ -45,7 +45,7 @@ export class ProductSearchComponent implements OnInit {
       this.dataSource.sort = this.sort;
       if (products.length > 0) {
         this.customSnackBarService.successMessage('Search completed');
-        this.showSearchTable = false;
+        this.hideSearchTable = false;
       }
       else {
         this.customSnackBarService.warningMessage('No results found');
