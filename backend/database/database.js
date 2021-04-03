@@ -7,7 +7,15 @@ function execute(db) {
             name TEXT NOT NULL,
             price DECIMAL(20,2) NOT NULL,
             description TEXT NULL,
-            amount BIGINT NULL
+            amount BIGINT NULL,
+            categoryId INTEGER NOT NULL,
+                FOREIGN KEY (categoryId)
+                REFERENCES category (id)
+        );
+        
+        CREATE TABLE IF NOT EXISTS category (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category TEXT NOT NULL
         );
     `)
 }

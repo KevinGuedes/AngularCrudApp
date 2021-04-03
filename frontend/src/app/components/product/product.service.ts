@@ -1,7 +1,6 @@
 import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar'
 import { Product } from './product.model';
 import { Observable, EMPTY } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
@@ -11,10 +10,9 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  baseUlr = "http://localhost:3001/products";
+  private baseUlr: string = "http://localhost:3001/products";
 
   constructor(
-    private snackBar: MatSnackBar,
     private http: HttpClient,
     private customSnackBarService: CustomSnackBarService
   ) { }

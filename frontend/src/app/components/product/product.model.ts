@@ -3,5 +3,7 @@ export interface Product {
     name: string,
     price: number,
     amount?: number,
-    description?: string
+    description?: string,
+    category?: string,
+    categoryId?: number
 }

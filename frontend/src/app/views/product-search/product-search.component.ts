@@ -17,7 +17,7 @@ export class ProductSearchComponent implements OnInit {
   minPrice: number = 0;
   maxPrice: number = 0;
   dataSource: MatTableDataSource<Product>;
-  displayedColumns = ['id', 'name', 'price', 'amount', 'description', 'actions']
+  displayedColumns = ['id', 'name', 'price', 'amount', 'category', 'actions']
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

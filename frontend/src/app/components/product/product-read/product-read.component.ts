@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ProductReadComponent implements OnInit {
   dataSource: MatTableDataSource<Product>;
-  displayedColumns = ['id', 'name', 'price', 'amount', 'description', 'actions']
+  displayedColumns = ['id', 'name', 'price', 'amount', 'category', 'actions']
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

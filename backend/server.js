@@ -5,8 +5,11 @@ const Database = require('./database/database')
 const app = express()
 const port = 3001
 const {
-    jsonProductToDTO
+    jsonProductToDTO,
 } = require('./mapping/productMapper')
+const {
+    jsonCategoryToDTO
+} = require('./mapping/categoryMapper')
 const {
     insertProduct,
     updateProduct,
@@ -14,8 +17,14 @@ const {
     deleteProduct,
     readProductById,
     readProductByPriceRange
-} = require('./database/procedures')
-
+} = require('./database/productProcedures')
+const {
+    insertCategory,
+    updateCategory,
+    readCategoryById,
+    readCategory,
+    deleteCategory,
+} = require('./database/categoryProcedures')
 
 // Middlewares
 app
@@ -23,7 +32,7 @@ app
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
 
-//#region CRUD
+//#region Product CRUD
 app.post('/products', (req, res) => {
     try {
         Database
@@ -51,9 +60,9 @@ app.put('/products/:id', (req, res) => {
         Database
             .then(
                 async (db) => {
-                    const newProduct = jsonProductToDTO(req.body)
-                    await updateProduct(db, newProduct)
-                    res.send(newProduct)
+                    const product = jsonProductToDTO(req.body)
+                    await updateProduct(db, product, req.params.id)
+                    res.send(product)
                 },
                 (error) => {
                     res.send(error.message)
@@ -85,6 +94,79 @@ app.delete('/products/:id', (req, res) => {
         .then(
             async (db) => {
                 await deleteProduct(db, req.params.id)
+                res.send({
+                    success: true,
+                })
+            },
+            (error) => {
+                res.status(200).send(error.message)
+            }
+        )
+})
+//#endregion
+
+//#region Category CRUD
+app.post('/category', (req, res) => {
+    try {
+        Database
+            .then(
+                async (db) => {
+                    await insertCategory(db, jsonCategoryToDTO(req.body))
+                    res.send({
+                        success: true,
+                    })
+                },
+                (error) => {
+                    res.send(error.message)
+                }
+            )
+    } catch (err) {
+        console.log(err.message)
+        res.send({
+            success: false,
+        })
+    }
+})
+
+app.put('/category/:id', (req, res) => {
+    try {
+        Database
+            .then(
+                async (db) => {
+                    const category = jsonCategoryToDTO(req.body)
+                    await updateCategory(db, category, req.params.id)
+                    res.send(category)
+                },
+                (error) => {
+                    res.send(error.message)
+                }
+            )
+    } catch (err) {
+        console.log(err.message)
+        res.send({
+            success: false,
+        })
+    }
+})
+
+app.get('/category', (req, res) => {
+    Database
+        .then(
+            async (db) => {
+                const categories = await readCategory(db)
+                res.json(categories)
+            },
+            (error) => {
+                res.send(error.message)
+            }
+        )
+})
+
+app.delete('/category/:id', (req, res) => {
+    Database
+        .then(
+            async (db) => {
+                await deleteCategory(db, req.params.id)
                 res.send({
                     success: true,
                 })
