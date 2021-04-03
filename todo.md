@@ -1,5 +1,6 @@
 - [x] Tabelas com paginação - Schematics
 - [x] Filtro por nome nas Tabelas
-- [ ] Adicionar categoria de produtos
-- [ ] Compra de produtos e atualização de estoque
+- [x] Adicionar categoria de produtos
+- [ ] CRUD de categorias
 - [ ] Card de informações do produto
+- [ ] Compra de produtos e atualização de estoque
