@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
 import { Product } from 'src/app/components/product/product.model';
 import { ProductService } from 'src/app/components/product/product.service';
 import { HeaderService } from 'src/app/components/template/header/header.service';
-
 @Component({
   selector: 'app-product-search',
   templateUrl: './product-search.component.html',
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
-
-  showSearchTable: boolean = false;
-  products: Product[]
+  showSearchTable: boolean = true;
   minPrice: number = 0;
   maxPrice: number = 0;
+  dataSource: MatTableDataSource<Product>;
   displayedColumns = ['id', 'name', 'price', 'amount', 'description', 'actions']
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
 
   constructor(
     private router: Router,
@@ -36,10 +40,12 @@ export class ProductSearchComponent implements OnInit {
 
   searchProduct(): void {
     this.productService.readByPriceRange(this.minPrice, this.maxPrice).subscribe(products => {
-      this.products = products;
+      this.dataSource = new MatTableDataSource(products)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       if (products.length > 0) {
         this.customSnackBarService.successMessage('Search completed');
-        this.showSearchTable = true;
+        this.showSearchTable = false;
       }
       else {
         this.customSnackBarService.warningMessage('No results found');

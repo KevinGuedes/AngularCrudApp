@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { Product } from '../product.model';
 import { ProductService } from './../product.service'
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-product-read',
@@ -8,15 +11,18 @@ import { ProductService } from './../product.service'
   styleUrls: ['./product-read.component.css']
 })
 export class ProductReadComponent implements OnInit {
-
-  products: Product[]
+  dataSource: MatTableDataSource<Product>;
   displayedColumns = ['id', 'name', 'price', 'amount', 'description', 'actions']
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.read().subscribe(products => {
-      this.products = products
+      this.dataSource = new MatTableDataSource(products)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
