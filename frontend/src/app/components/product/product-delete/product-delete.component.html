@@ -14,7 +14,7 @@
             <input matInput placeholder="Description" [value]="product.description" name="description" disabled>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-select [value]="product.categoryId" name="categoryId" [placeholder]="product.category" disabled>
+            <mat-select [value]="product.categoryId" name="categoryId" disabled>
                 <mat-option [value]="product.categoryId"> {{ product.category }} </mat-option>
             </mat-select>
         </mat-form-field>
