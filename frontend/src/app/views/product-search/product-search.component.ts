@@ -23,7 +23,6 @@ export class ProductSearchComponent implements OnInit {
 
 
   constructor(
-    private router: Router,
     private productService: ProductService,
     private headerService: HeaderService,
     private customSnackBarService: CustomSnackBarService,
@@ -56,9 +55,5 @@ export class ProductSearchComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  cancel(): void {
-    this.router.navigate(['/home'])
   }
 }

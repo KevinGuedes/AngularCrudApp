@@ -7,6 +7,10 @@ table {
     width: 100%;
 }
 
+i {
+    margin-right: 10px;
+}
+
 .columns-fixed {
     table-layout: fixed;
     width: 100%;
@@ -14,6 +18,14 @@ table {
 
 .table-container {
     margin-top: 20px;
+}
+
+.edit > i {
+    color: #d9cd26;
+}
+
+.delete > i{
+    color: #e35e6b;
 }
 
 .buy > i {

@@ -1,3 +1,4 @@
 - [x] Tabelas com paginação - Schematics
-- [ ] Filtro por nome nas tabelas
+- [x] Filtro por nome nas Tabelas
+- [ ] Adicionar categoria de produtos
 - [ ] Compra de produtos e atualização de estoque
