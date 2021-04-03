@@ -27,7 +27,7 @@ async function updateProduct(db, product, id) {
             price = ${product.price},
             description = "${product.description}",
             amount = ${product.amount},
-            categoryId = ${product.categoryId},
+            categoryId = ${product.categoryId}
         WHERE 
             id = ${id}
     `)
