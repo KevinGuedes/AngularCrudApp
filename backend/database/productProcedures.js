@@ -41,7 +41,8 @@ async function readProduct(db) {
             price,
             description,
             amount,
-            category
+            category,
+            categoryId
         FROM
             products as P
         INNER JOIN
@@ -64,7 +65,8 @@ async function readProductById(db, id) {
             price,
             description,
             amount,
-            category
+            category,
+            categoryId
         FROM 
             products as P
         INNER JOIN
@@ -84,7 +86,8 @@ async function readProductByPriceRange(db, minPrice, maxPrice) {
             price,
             description,
             amount,
-            category
+            category,
+            categoryId
         FROM
             products as P
         INNER JOIN

@@ -17,7 +17,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Category</mat-label>
             <mat-select [(ngModel)]="product.categoryId" name="categoryId">
-                <mat-option value="">Category</mat-option>
+                <mat-option value="" selected disabled hidden>Category</mat-option>
                 <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
             </mat-select>
         </mat-form-field>

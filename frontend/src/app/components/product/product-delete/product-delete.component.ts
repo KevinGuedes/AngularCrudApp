@@ -33,7 +33,7 @@ export class ProductDeleteComponent implements OnInit {
 
   deleteProduct(): void {
     this.productService.delete(Number(this.product.id)).subscribe(() => {
-      this.customSnackBarService.warningMessage('Product deleted');
+      this.customSnackBarService.successMessage('Product deleted');
       this.router.navigate(["/products"]);
     })
   }

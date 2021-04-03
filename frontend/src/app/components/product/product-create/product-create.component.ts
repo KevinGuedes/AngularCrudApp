@@ -37,10 +37,14 @@ export class ProductCreateComponent implements OnInit {
   }
 
   createProduct(): void {
-    this.productService.create(this.product).subscribe(() => {
-      this.customSnackBarService.successMessage('Product created')
-      this.router.navigate(['/products'])
-    })
+    const isValidProduct = this.productService.validateProductData(this.product);
+
+    if (isValidProduct) {
+      this.productService.create(this.product).subscribe(() => {
+        this.customSnackBarService.successMessage('Product created')
+        this.router.navigate(['/products'])
+      })
+    }
   }
 
   cancel(): void {

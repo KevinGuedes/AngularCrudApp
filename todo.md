@@ -1,6 +1,7 @@
 - [x] Tabelas com paginação - Schematics
 - [x] Filtro por nome nas Tabelas
 - [x] Adicionar categoria de produtos
+- [x] Mensageria para campos incompletos
 - [ ] CRUD de categorias
 - [ ] Card de informações do produto
 - [ ] Compra de produtos e atualização de estoque

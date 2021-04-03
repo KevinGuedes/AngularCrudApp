@@ -77,4 +77,14 @@ export class ProductService {
     this.customSnackBarService.errorMessage("An error has occurred")
     return EMPTY
   }
+
+  validateProductData(product: Product): boolean {
+    for (let [key, value] of Object.entries(product)) {
+      if (!value) {
+        this.customSnackBarService.warningMessage(`Enter the product ${key == 'categoryId' ? 'category' : key}`)
+        return false;
+      }
+    }
+    return true;
+  }
 }

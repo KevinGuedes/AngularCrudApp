@@ -29,22 +29,29 @@ export class ProductUpdateComponent implements OnInit {
       price: null,
       description: null,
       amount: null,
-      category: ''
+      category: '',
+      categoryId: null,
     }
     const id = this.route.snapshot.paramMap.get('id');
     this.categoryService.read().subscribe(categories => {
       this.categories = categories
-    })
-    this.productService.readById(Number(id)).subscribe(product => {
-      this.product = product;
+      this.productService.readById(Number(id)).subscribe(product => {
+        this.product = product;
+        console.log(product)
+      })
     })
   }
 
   updateProduct(): void {
-    this.productService.update(this.product).subscribe(() => {
-      this.customSnackBarService.successMessage('Product updated');
-      this.router.navigate(['/products']);
-    })
+    const isValidProduct = this.productService.validateProductData(this.product)
+
+    if (isValidProduct) {
+      console.log(this.product)
+      this.productService.update(this.product).subscribe(() => {
+        this.customSnackBarService.successMessage('Product updated');
+        this.router.navigate(['/products']);
+      })
+    }
   }
 
   cancel(): void {
