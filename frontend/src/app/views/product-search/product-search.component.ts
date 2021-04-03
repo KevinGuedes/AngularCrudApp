@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
 import { Product } from 'src/app/components/product/product.model';
 import { ProductService } from 'src/app/components/product/product.service';
 import { HeaderService } from 'src/app/components/template/header/header.service';
@@ -20,7 +21,8 @@ export class ProductSearchComponent implements OnInit {
   constructor(
     private router: Router,
     private productService: ProductService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private customSnackBarService: CustomSnackBarService,
   ) {
     headerService.headerData = {
       title: 'Search',
@@ -36,11 +38,11 @@ export class ProductSearchComponent implements OnInit {
     this.productService.readByPriceRange(this.minPrice, this.maxPrice).subscribe(products => {
       this.products = products;
       if (products.length > 0) {
-        this.productService.showMessage('Search completed');
+        this.customSnackBarService.successMessage('Search completed');
         this.showSearchTable = true;
       }
       else {
-        this.productService.notFoundMessage('No results found');
+        this.customSnackBarService.warningMessage('No results found');
       }
     })
   }
