@@ -32,7 +32,6 @@ export class ProductCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.read().subscribe(categories => {
-      console.log(categories)
       this.categories = categories
     })
   }

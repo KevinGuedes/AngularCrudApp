@@ -13,6 +13,11 @@
         <mat-form-field>
             <input matInput placeholder="Description" [(ngModel)]="product.description" name="description">
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-select [(ngModel)]="product.categoryId" name="categoryId"  [placeholder]="product.category">
+                <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 
     <button mat-raised-button (click)="updateProduct()" color="primary">Update</button>
