@@ -178,7 +178,6 @@ app.delete('/category/:id', (req, res) => {
 })
 //#endregion
 
-
 app.get('/products/:id', (req, res) => {
     Database
         .then(

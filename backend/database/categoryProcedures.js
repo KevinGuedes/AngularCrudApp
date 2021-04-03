@@ -3,9 +3,9 @@ async function insertCategory(db, category) {
 
     await db.run(`
         INSERT INTO category (
-            name
+            category
         ) VALUES (
-            "${category.name}"
+            "${category.category}"
         );
     `)
 }
@@ -15,7 +15,7 @@ async function updateCategory(db, category, id) {
     await db.run(`
         UPDATE category 
         SET 
-            name = "${category.name}"
+            category = "${category.name}"
         WHERE 
             id = ${id}
     `)

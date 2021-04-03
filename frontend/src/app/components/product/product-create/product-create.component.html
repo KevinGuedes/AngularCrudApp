@@ -13,6 +13,9 @@
         <mat-form-field>
             <input matInput placeholder="Description" [(ngModel)]="product.description" name="description">
         </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Category" [(ngModel)]="product.categoryId" name="categoryId">
+        </mat-form-field>
     </form>
 
     <button mat-raised-button (click)="createProduct()" color="primary">Save</button>

@@ -1,5 +1,5 @@
 function jsonProductToDTO(jsonProduct) {
-    if (!jsonProduct.name || !jsonProduct.price) {
+    if (!jsonProduct.name || !jsonProduct.price || !jsonProduct.categoryId) {
         throw new Error('Invalid product.')
     }
     else {
@@ -9,6 +9,7 @@ function jsonProductToDTO(jsonProduct) {
             price: jsonProduct.price,
             description: jsonProduct.description || null,
             amount: jsonProduct.amount || null,
+            categoryId: jsonProduct.categoryId
         }
     }
 }
