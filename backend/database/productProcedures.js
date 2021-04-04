@@ -80,9 +80,10 @@ async function readProductById(db, id) {
 
 async function readProductByPriceRangeAndCategory(db, minPrice, maxPrice, categoryId, productName) {
 
-    const searchBycategory = categoryId ? `categoryId = ${categoryId} AND` : ''
-    const searchByName = productName ? `name LIKE '%${productName}%'` : ''
-
+    const searchBycategory = categoryId ? `AND categoryId = ${categoryId} ` : ''
+    const searchByName = productName ? `AND name LIKE '%${productName}%' ` : ''
+    console.log(searchBycategory)
+    console.log(searchByName)
     return await db.all(`
             SELECT
                 P.id,
@@ -99,8 +100,8 @@ async function readProductByPriceRangeAndCategory(db, minPrice, maxPrice, catego
             ON
                 P.categoryId = C.id
             WHERE 
-                price > ${minPrice || 0} AND
-                price < ${maxPrice || 0} AND
+                price > ${minPrice} AND
+                price < ${maxPrice}
                 ${searchBycategory} 
                 ${searchByName}
         `)
