@@ -5,10 +5,10 @@
             <input matInput placeholder="Name" [(ngModel)]="productName" name="productName">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Min Price (R$)" [(ngModel)]="minPrice" name="minPrice" type="number" step="0.01">
+            <input matInput placeholder="Min Price (R$)" [(ngModel)]="minPrice" name="minPrice" type="number" step="0.01" min="0">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Max Price (R$)" [(ngModel)]="maxPrice" name="maxPrice" type="number" step="0.01">
+            <input matInput placeholder="Max Price (R$)" [(ngModel)]="maxPrice" name="maxPrice" type="number" step="0.01" min="0">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
@@ -28,7 +28,6 @@
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Product Name" #input>
     </mat-form-field>
-
 
     <table mat-table [dataSource]="dataSource" class="columns-fixed" matSort>
         <!-- Id Column -->

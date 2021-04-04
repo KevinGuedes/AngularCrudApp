@@ -80,8 +80,10 @@ async function readProductById(db, id) {
 
 async function readProductByPriceRangeAndCategory(db, minPrice, maxPrice, categoryId, productName) {
 
-    if (productName && categoryId) {
-        return await db.all(`
+    const searchBycategory = categoryId ? `categoryId = ${categoryId} AND` : ''
+    const searchByName = productName ? `name LIKE '%${productName}%'` : ''
+
+    return await db.all(`
             SELECT
                 P.id,
                 name,
@@ -97,55 +99,11 @@ async function readProductByPriceRangeAndCategory(db, minPrice, maxPrice, catego
             ON
                 P.categoryId = C.id
             WHERE 
-                price > ${minPrice} AND
-                price < ${maxPrice} AND
-                P.categoryId = ${categoryId} AND
-                name like "%${productName}%"
+                price > ${minPrice || 0} AND
+                price < ${maxPrice || 0} AND
+                ${searchBycategory} 
+                ${searchByName}
         `)
-    }
-    else if (categoryId && !productName) {
-        return await db.all(`
-            SELECT
-                P.id,
-                name,
-                price,
-                description,
-                amount,
-                category,
-                categoryId
-            FROM
-                products as P
-            INNER JOIN
-                category as C
-            ON
-                P.categoryId = C.id
-            WHERE 
-                price > ${minPrice} AND
-                price < ${maxPrice} AND
-                P.categoryId = ${categoryId} AND
-                name like "%${productName}%"
-        `)
-    } else {
-        return await db.all(`
-            SELECT
-                P.id,
-                name,
-                price,
-                description,
-                amount,
-                category,
-                categoryId
-            FROM
-                products as P
-            INNER JOIN
-                category as C
-            ON
-                P.categoryId = C.id
-            WHERE 
-                price > ${minPrice} AND
-                price < ${maxPrice}
-        `)
-    }
 }
 
 module.exports = {
