@@ -39,19 +39,21 @@ export class ProductService {
     );
   }
 
-  readByPriceRange(minPrice: number, maxPrice: number): Observable<Product[]> {
+  readByPriceRangeAndCategory(minPrice: number, maxPrice: number, categoryId: number, productName: string): Observable<Product[]> {
     const url = `${this.baseUlr}/search`;
 
     if (minPrice > maxPrice) {
       [maxPrice, minPrice] = [minPrice, maxPrice]
     }
 
-    const range = {
+    const searchParameter = {
       maxPrice: maxPrice,
-      minPrice: minPrice
+      minPrice: minPrice,
+      categoryId: categoryId,
+      productName: productName
     }
 
-    return this.http.post<Product[]>(url, range).pipe(
+    return this.http.post<Product[]>(url, searchParameter).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
     );

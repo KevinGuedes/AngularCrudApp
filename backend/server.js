@@ -16,7 +16,7 @@ const {
     readProduct,
     deleteProduct,
     readProductById,
-    readProductByPriceRange
+    searchProduct
 } = require('./database/productProcedures')
 const {
     insertCategory,
@@ -192,10 +192,12 @@ app.get('/products/:id', (req, res) => {
 })
 
 app.post('/products/search', (req, res) => {
+    console.log(req.body)
+
     Database
         .then(
             async (db) => {
-                const products = await readProductByPriceRange(db, req.body.minPrice, req.body.maxPrice)
+                const products = await searchProduct(db, req.body.minPrice, req.body.maxPrice, req.body.categoryId, req.body.productName)
                 res.json(products)
             },
             (error) => {

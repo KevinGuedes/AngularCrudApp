@@ -1,6 +1,5 @@
 //#region CRUD
 async function insertProduct(db, product) {
-
     await db.run(`
         INSERT INTO products (
             name, 
@@ -19,7 +18,6 @@ async function insertProduct(db, product) {
 }
 
 async function updateProduct(db, product, id) {
-
     await db.run(`
         UPDATE products 
         SET 
@@ -78,26 +76,32 @@ async function readProductById(db, id) {
     `)
 }
 
-async function readProductByPriceRange(db, minPrice, maxPrice) {
+async function searchProduct(db, minPrice, maxPrice, categoryId, productName) {
+
+    const searchByCategoryId = categoryId ? `AND categoryId = ${categoryId} ` : ''
+    const searchByProductName = productName ? `AND name LIKE '%${productName}%' ` : ''
+
     return await db.all(`
-        SELECT
-            P.id,
-            name,
-            price,
-            description,
-            amount,
-            category,
-            categoryId
-        FROM
-            products as P
-        INNER JOIN
-            category as C
-        ON
-            P.categoryId = C.id
-        WHERE 
-            price > ${minPrice} AND
-            price < ${maxPrice}
-    `)
+            SELECT
+                P.id,
+                name,
+                price,
+                description,
+                amount,
+                category,
+                categoryId
+            FROM
+                products as P
+            INNER JOIN
+                category as C
+            ON
+                P.categoryId = C.id
+            WHERE 
+                price >= ${minPrice} AND
+                price <= ${maxPrice}
+                ${searchByCategoryId}
+                ${searchByProductName}
+        `)
 }
 
 module.exports = {
@@ -106,5 +110,5 @@ module.exports = {
     readProduct,
     readProductById,
     deleteProduct,
-    readProductByPriceRange
+    searchProduct
 }

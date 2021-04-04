@@ -2,7 +2,8 @@
 - [x] Filtro por nome nas Tabelas
 - [x] Adicionar categoria de produtos
 - [x] Mensageria para campos incompletos
-- [ ] Pesquisa de produtos por categoria
+- [x] Pesquisa de produtos por categoria e por nome
+- [ ] Tratativa de exceções no backend
 - [ ] CRUD de categorias
 - [ ] Card de informações do produto
 - [ ] Compra de produtos e atualização de estoque

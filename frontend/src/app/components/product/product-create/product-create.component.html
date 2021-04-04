@@ -5,10 +5,10 @@
             <input matInput placeholder="Name" [(ngModel)]="product.name" name="name">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Price (R$)" [(ngModel)]="product.price" name="price" type="number">
+            <input matInput placeholder="Price (R$)" [(ngModel)]="product.price" name="price" type="number" step="0.01" min="0">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Amount" [(ngModel)]="product.amount" name="amount" type="number">
+            <input matInput placeholder="Amount" [(ngModel)]="product.amount" name="amount" type="number" step="1" min="0">
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Description" [(ngModel)]="product.description" name="description">
