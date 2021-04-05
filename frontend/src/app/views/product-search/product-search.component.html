@@ -64,6 +64,11 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let row">
+                <a routerLink="/products/buy/{{ row.id }}" class="buy">
+                    <i class="material-icons buy">
+                        attach_money
+                    </i>
+                </a>
                 <a routerLink="/products/update/{{ row.id }}" class="edit">
                     <i class="material-icons edit">
                         edit
@@ -72,11 +77,6 @@
                 <a routerLink="/products/delete/{{ row.id }}" class="delete">
                     <i class="material-icons delete">
                         delete
-                    </i>
-                </a>
-                <a routerLink="/products/buy/{{ row.id }}" class="buy">
-                    <i class="material-icons buy">
-                        attach_money
                     </i>
                 </a>
                 <a routerLink="/products/info/{{ row.id }}" class="info">

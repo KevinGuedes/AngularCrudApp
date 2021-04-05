@@ -4,11 +4,11 @@
         <mat-card-subtitle>Unit price: <strong>{{ product.price | currency: 'BRL' }}</strong></mat-card-subtitle>
     </div>
     <mat-divider></mat-divider>
-    <mat-card-content>
+    <!-- <mat-card-content>
         <p>
             Enter the following data to complete the purchase
         </p>
-    </mat-card-content>
+    </mat-card-content> -->
     <mat-vertical-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
@@ -38,24 +38,34 @@
         </mat-step>
         <mat-step [stepControl]="thirdFormGroup">
             <form [formGroup]="thirdFormGroup">
-                <ng-template matStepLabel>Amount</ng-template>
-                <mat-form-field>
-                    <mat-label>Units you want to buy</mat-label>
+
+                <div>
+                    <ng-template matStepLabel>Amount</ng-template>
+                    <mat-label>How many units do you want to buy?</mat-label>
                     <input matInput formControlName="amount" placeholder="Ex. 1 Main St, New York, NY" name="address"
-                        required>
-                </mat-form-field>
+                        required [(ngModel)]="amount" min="1" step="1" [max]="max" type="number" [hidden]="true"
+                        [disabled]="true">
+                    <mat-slider matInput formControlName="amount" class="slider" required color="primary" [max]="max"
+                        [min]="min" [step]="step" [thumbLabel]="thumbLabel" [(ngModel)]="amount" name="amount"
+                        (change)="onChange()">
+                    </mat-slider>
+                    <h1>Units: <strong>{{ amount }}</strong></h1> 
+                </div>
+
                 <div>
                     <button mat-raised-button matStepperPrevious>Back</button>
                     <button mat-raised-button matStepperNext color="primary">Next</button>
                 </div>
             </form>
         </mat-step>
+
         <mat-step>
             <ng-template matStepLabel>Finish purchase</ng-template>
             <p>Do you want to finish your purchase?</p>
+            <h1>Total Price (R$): <strong>{{ total | currency: 'BRL' }}</strong></h1>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
-                <button mat-raised-button type="submit" class="btn-finish" (click)="showResults()">Finish</button>
+                <button mat-raised-button type="submit" class="btn-finish" (click)="buy()">Finish</button>
             </div>
         </mat-step>
     </mat-vertical-stepper>

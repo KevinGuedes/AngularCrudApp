@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
+import { CustomSnackBarService } from '../../message/custom-snack-bar.service';
 
 @Component({
   selector: 'app-product-buy',
@@ -20,12 +21,19 @@ export class ProductBuyComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   product: Product;
+  min: number;
+  max: number;
+  step: number = 1;
+  thumbLabel: boolean = true;
+  amount: number = 1;
   total: number;
+  hideInput: boolean = true;
 
   constructor(
     private _formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +49,8 @@ export class ProductBuyComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.productService.readById(Number(id)).subscribe(product => {
       this.product = product;
+      this.total = product.price;
+      this.max = product.amount;
     })
 
     this.firstFormGroup = this._formBuilder.group({
@@ -56,9 +66,19 @@ export class ProductBuyComponent implements OnInit {
     })
   }
 
+  onChange() {
+    this.total = this.amount * this.product.price;
+  }
 
-  showResults(): void {
-    console.log(this.firstFormGroup.value)
-    console.log(this.secondFormGroup.value.amount);
+  buy(): void {
+    if (!this.firstFormGroup.valid || !this.secondFormGroup.valid) {
+      this.customSnackBarService.warningMessage('Enter all the necessary data to finish the purchase')
+    }
+    else {
+      this.product.amount = this.product.amount - this.amount;
+      this.productService.update(this.product).subscribe(() => {
+        this.customSnackBarService.successMessage('Product purchases')
+      })
+    }
   }
 }
