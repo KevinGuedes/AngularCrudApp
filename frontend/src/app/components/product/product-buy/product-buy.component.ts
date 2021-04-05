@@ -72,7 +72,7 @@ export class ProductBuyComponent implements OnInit {
 
   buy(): void {
     if (!this.firstFormGroup.valid || !this.secondFormGroup.valid) {
-      this.customSnackBarService.warningMessage('Enter all the necessary data to finish the purchase')
+      this.customSnackBarService.warningMessage('Enter all the necessary data to finish the purchased')
     }
     else {
       this.product.amount = this.product.amount - this.amount;
