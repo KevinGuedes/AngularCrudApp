@@ -36,8 +36,11 @@ import { CustomSnackBarComponent } from './components/message/custom-snack-bar/c
 import { CategoryReadComponent } from './components/category/category-read/category-read.component'
 import { MatSelectModule } from '@angular/material/select';
 import { ProductInfoComponent } from './components/product/product-info/product-info.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { ProductBuyComponent } from './components/product/product-buy/product-buy.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper'
+import { MatSliderModule } from '@angular/material/slider';
 
 registerLocaleData(localePt)
 
@@ -58,7 +61,8 @@ registerLocaleData(localePt)
     ProductSearchComponent,
     CustomSnackBarComponent,
     CategoryReadComponent,
-    ProductInfoComponent
+    ProductInfoComponent,
+    ProductBuyComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +82,10 @@ registerLocaleData(localePt)
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
-    MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatSliderModule,
   ],
   providers: [{
     provide: LOCALE_ID,

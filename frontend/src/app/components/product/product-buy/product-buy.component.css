@@ -1,0 +1,16 @@
+button + button {
+    margin-left: 20px;
+}
+
+mat-card-content {
+    padding-top: 20px;
+}
+
+.btn-finish {
+    color: #fff;
+    background-color: #34d170;
+}
+
+.header{ 
+    padding-top: 8px;
+}

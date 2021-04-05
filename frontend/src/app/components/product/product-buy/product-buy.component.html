@@ -1,0 +1,63 @@
+<mat-card class="mat-elevation-z4">
+    <div class="header">
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-subtitle>Unit price: <strong>{{ product.price | currency: 'BRL' }}</strong></mat-card-subtitle>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <p>
+            Enter the following data to complete the purchase
+        </p>
+    </mat-card-content>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Your name" formControlName="customer" name="customer" required>
+                </mat-form-field>
+                <div>
+                    <button color="primary" mat-raised-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" name="address"
+                        required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Amount</ng-template>
+                <mat-form-field>
+                    <mat-label>Units you want to buy</mat-label>
+                    <input matInput formControlName="amount" placeholder="Ex. 1 Main St, New York, NY" name="address"
+                        required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Finish purchase</ng-template>
+            <p>Do you want to finish your purchase?</p>
+            <div>
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button type="submit" class="btn-finish" (click)="showResults()">Finish</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+
+</mat-card>
