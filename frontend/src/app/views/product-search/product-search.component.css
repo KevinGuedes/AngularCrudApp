@@ -41,9 +41,15 @@ form {
     flex-direction: row;
     width: 60%;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    line-height: 140px;
+    vertical-align: middle;
 }
 
 mat-form-field {
     padding: 0;
+}
+
+.info > i {
+    color: #3cade2
 }

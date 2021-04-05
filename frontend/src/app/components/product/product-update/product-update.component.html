@@ -11,7 +11,7 @@
             <input matInput placeholder="Amount" [(ngModel)]="product.amount" name="amount" type="number" step="1" min="0">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Description" [(ngModel)]="product.description" name="description">
+            <textarea matInput placeholder="Description" [(ngModel)]="product.description" name="description"></textarea>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-select [(ngModel)]="product.categoryId" name="categoryId">

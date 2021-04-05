@@ -79,6 +79,11 @@
                         attach_money
                     </i>
                 </a>
+                <a routerLink="/products/info/{{ row.id }}" class="info">
+                    <i class="material-icons info">
+                        info
+                    </i>
+                </a>
             </td>
         </ng-container>
 
@@ -89,7 +94,7 @@
     <mat-paginator #paginator
       [length]="dataSource?.data?.length"
       [pageIndex]="0"
-      [pageSize]="4"
-      [pageSizeOptions]="[4]">
+      [pageSize]="5"
+      [pageSizeOptions]="[5]">
   </mat-paginator>
 </div>

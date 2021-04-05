@@ -35,6 +35,9 @@ import { ProductSearchComponent } from './views/product-search/product-search.co
 import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component';
 import { CategoryReadComponent } from './components/category/category-read/category-read.component'
 import { MatSelectModule } from '@angular/material/select';
+import { ProductInfoComponent } from './components/product/product-info/product-info.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 
 registerLocaleData(localePt)
 
@@ -54,7 +57,8 @@ registerLocaleData(localePt)
     ProductDeleteComponent,
     ProductSearchComponent,
     CustomSnackBarComponent,
-    CategoryReadComponent
+    CategoryReadComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ registerLocaleData(localePt)
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatDividerModule
   ],
   providers: [{
     provide: LOCALE_ID,
