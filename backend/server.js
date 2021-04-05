@@ -192,8 +192,6 @@ app.get('/products/:id', (req, res) => {
 })
 
 app.post('/products/search', (req, res) => {
-    console.log(req.body)
-
     Database
         .then(
             async (db) => {

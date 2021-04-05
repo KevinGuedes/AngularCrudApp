@@ -12,7 +12,7 @@ i {
 }
 
 .edit > i {
-    color: #d9cd26;
+    color: #ecde1c;
 }
 
 .delete > i{
@@ -21,6 +21,10 @@ i {
 
 .buy > i {
     color: #34d170;
+}
+
+.info > i {
+    color: #3cade2
 }
 
 .filter-field {

@@ -1,0 +1,17 @@
+.btn-edit {
+    color: #fff;
+    background-color: #ecde1c;
+}
+
+.btn-delete {
+    color: #fff;
+    background-color: #e35e6b;
+}
+
+.actions { 
+    padding-top: 16px;
+}
+
+button + button{
+    margin-left: 20px;
+}

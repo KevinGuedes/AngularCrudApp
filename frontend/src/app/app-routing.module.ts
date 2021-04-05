@@ -6,6 +6,7 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { ProductSearchComponent } from './views/product-search/product-search.component';
+import { ProductInfoComponent } from './components/product/product-info/product-info.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: "products/search",
     component: ProductSearchComponent
+  },
+  {
+    path: "products/info/:id",
+    component: ProductInfoComponent
   }
 ];
 
