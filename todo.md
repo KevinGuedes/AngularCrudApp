@@ -8,3 +8,5 @@
 - [x] Card de informações do produto
 - [x] Compra de produtos e atualização de estoque
 - [ ] Popup de confirmação de compra com retorno para página de produtos
+- [ ] View de contatos
+- [ ] Requisitos, etc no README.md

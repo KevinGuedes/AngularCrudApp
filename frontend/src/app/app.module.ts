@@ -41,7 +41,8 @@ import { ProductBuyComponent } from './components/product/product-buy/product-bu
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper'
 import { MatSliderModule } from '@angular/material/slider';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { CustomDialogComponent } from './components/message/custom-dialog/custom-dialog.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -62,7 +63,8 @@ registerLocaleData(localePt)
     CustomSnackBarComponent,
     CategoryReadComponent,
     ProductInfoComponent,
-    ProductBuyComponent
+    ProductBuyComponent,
+    CustomDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ registerLocaleData(localePt)
     ReactiveFormsModule,
     MatStepperModule,
     MatSliderModule,
+    MatDialogModule
   ],
   providers: [{
     provide: LOCALE_ID,
@@ -93,7 +96,8 @@ registerLocaleData(localePt)
   }], //services expostos fora do módulo próprio do service
   bootstrap: [AppComponent],
   entryComponents: [
-    CustomSnackBarComponent
+    CustomSnackBarComponent,
+    CustomDialogComponent
   ]
 })
 export class AppModule { }

@@ -1,0 +1,14 @@
+<div class="dialog"> 
+    <div mat-dialog-title class="dialog-title">
+        <h1>Purchase completed <i class="material-icons success">check</i></h1>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content class="content">
+        <h2>Thank you, <strong>{{ data.customer }}</strong>!</h2>
+        <h3>For shopping whit us. Have a nice day!</h3>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="actions">
+        <button mat-raised-button cdkFocusInitial color="primary" (click)="close()">Back</button>
+    </div>
+</div>

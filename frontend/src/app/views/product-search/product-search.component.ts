@@ -48,7 +48,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProduct(): void {
-    this.productService.readByPriceRangeAndCategory(this.minPrice, /*this.maxPrice*/ 100000000, this.categoryId, this.productName).subscribe(products => {
+    this.productService.readByPriceRangeAndCategory(this.minPrice, this.maxPrice, this.categoryId, this.productName).subscribe(products => {
       this.dataSource = new MatTableDataSource(products)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
