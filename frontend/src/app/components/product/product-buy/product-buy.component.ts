@@ -4,7 +4,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
-import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomDialogComponent } from '../../message/custom-dialog/custom-dialog.component';
 

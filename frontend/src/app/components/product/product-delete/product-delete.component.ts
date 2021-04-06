@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 

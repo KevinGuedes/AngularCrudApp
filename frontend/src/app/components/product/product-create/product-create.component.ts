@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from './../product.service'
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
-import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { CategoryService } from '../../category/category.service';
 import { Category } from '../../category/category.model';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';

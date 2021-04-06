@@ -27,7 +27,7 @@ export class CustomSnackBarService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       panelClass: ['msg-error'],
-      data: { message: message, icon: 'error' }
+      data: { message: message, icon: 'priority_high' }
     });
   }
 
@@ -37,7 +37,7 @@ export class CustomSnackBarService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       panelClass: ['msg-warning'],
-      data: { message: message, icon: 'priority_high' /*warning*/ }
+      data: { message: message, icon: 'warning' }
     });
   }
 
