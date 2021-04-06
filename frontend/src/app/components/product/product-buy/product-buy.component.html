@@ -1,4 +1,6 @@
 <mat-card class="mat-elevation-z4">
+
+
     <div class="header">
         <mat-card-title>{{product.name}}</mat-card-title>
         <mat-card-subtitle>Unit price: <strong>{{ product.price | currency: 'BRL' }}</strong></mat-card-subtitle>
@@ -10,7 +12,8 @@
         </p>
     </mat-card-content>
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+
+        <mat-step [stepControl]="firstFormGroup" state="badge">
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Fill out your name</ng-template>
                 <mat-form-field>
@@ -22,7 +25,7 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
+        <mat-step [stepControl]="secondFormGroup" state="home">
             <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Fill out your address</ng-template>
                 <mat-form-field>
@@ -36,40 +39,39 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="thirdFormGroup">
+        <mat-step [stepControl]="thirdFormGroup" state="money">
             <form [formGroup]="thirdFormGroup">
-
                 <div>
                     <ng-template matStepLabel>Amount</ng-template>
                     <mat-label>How many units do you want to buy?</mat-label>
-                    <input matInput formControlName="amount" placeholder="Ex. 1 Main St, New York, NY" name="address"
-                        required [(ngModel)]="amount" min="1" step="1" [max]="max" type="number" [hidden]="true"
-                        [disabled]="true">
                     <mat-slider matInput formControlName="amount" class="slider" required color="primary" [max]="max"
-                        [min]="min" [step]="step" [thumbLabel]="thumbLabel" [(ngModel)]="amount" name="amount"
-                        (change)="onChange()">
+                        min="0" step="1" [thumbLabel]="thumbLabel" name="amount" (change)="onChange()">
                     </mat-slider>
-                    <h1>Units: <strong>{{ amount }}</strong></h1> 
+                    <h1>Units: <strong>{{ thirdFormGroup.value.amount }}</strong></h1> 
                     <h1>Current total: <strong>{{ total | currency: 'BRL' }}</strong></h1>
-
                 </div>
 
                 <div>
                     <button mat-raised-button matStepperPrevious>Back</button>
-                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                    <button mat-raised-button matStepperNext color="primary" *ngIf="purchaseEnabled">Next</button>
+                <button mat-raised-button type="submit" class="btn-error" *ngIf="!purchaseEnabled" [disabled]="!purchaseEnabled">Choose at least 1 unit</button>
+
                 </div>
             </form>
         </mat-step>
 
-        <mat-step>
+        <mat-step state="verified" editable="false" *ngIf="purchaseEnabled">
             <ng-template matStepLabel>Finish purchase</ng-template>
             <p>Do you want to finish your purchase?</p>
             <h1>Total Price (R$): <strong>{{ total | currency: 'BRL' }}</strong></h1>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
                 <button mat-raised-button type="submit" class="btn-finish" (click)="finishPurchase()">Finish</button>
+                <!-- <button mat-raised-button type="submit" class="btn-finish" (click)="finishPurchase()" *ngIf="purchaseEnabled">Finish</button>
+                <button mat-raised-button type="submit" class="btn-error" *ngIf="!purchaseEnabled" [disabled]="!purchaseEnabled">Choose at least 1 unit</button> -->
             </div>
         </mat-step>
+
     </mat-horizontal-stepper>
 
 </mat-card>
