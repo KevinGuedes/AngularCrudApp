@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CustomSnackBarComponent } from './custom-snack-bar/custom-snack-bar.component';
+import { CustomSnackBarComponent } from './custom-snack-bar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class CustomSnackBarService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       panelClass: ['msg-error'],
-      data: { message: message, icon: 'error' }
+      data: { message: message, icon: 'priority_high' }
     });
   }
 

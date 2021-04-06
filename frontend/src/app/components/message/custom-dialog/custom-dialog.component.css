@@ -1,0 +1,27 @@
+i {
+    color: #34d170;
+}
+
+.content {
+    padding-top: 24px;
+    text-align: center;
+}
+
+.dialog-title {
+    text-align: center;
+}
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog-title,
+.content {
+    width: 100%;
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

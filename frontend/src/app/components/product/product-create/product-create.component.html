@@ -2,21 +2,21 @@
     <mat-card-title>New Product</mat-card-title>
     <form>
         <mat-form-field>
-            <input matInput placeholder="Name" [(ngModel)]="product.name" name="name">
+            <input matInput placeholder="Name" [(ngModel)]="product.name" name="name" required>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Price (R$)" [(ngModel)]="product.price" name="price" type="number" step="0.01" min="0">
+            <input matInput placeholder="Price (R$)" [(ngModel)]="product.price" name="price" type="number" step="0.01" min="0" required>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Amount" [(ngModel)]="product.amount" name="amount" type="number" step="1" min="0">
+            <input matInput placeholder="Amount" [(ngModel)]="product.amount" name="amount" type="number" step="1" min="0" required>
         </mat-form-field>
         <mat-form-field>
-            <textarea matInput placeholder="Description" [(ngModel)]="product.description" name="description"></textarea>
+            <input matInput placeholder="Description" [(ngModel)]="product.description" name="description" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
             <mat-label>Category</mat-label>
-            <mat-select [(ngModel)]="product.categoryId" name="categoryId">
+            <mat-select [(ngModel)]="product.categoryId" name="categoryId" required>
                 <mat-option value="" selected disabled hidden>Category</mat-option>
                 <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
             </mat-select>

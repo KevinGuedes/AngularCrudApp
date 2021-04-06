@@ -5,5 +5,8 @@
 - [x] Pesquisa de produtos por categoria e por nome
 - [ ] Tratativa de exceções no backend
 - [ ] CRUD de categorias
-- [ ] Card de informações do produto
-- [ ] Compra de produtos e atualização de estoque
+- [x] Card de informações do produto
+- [x] Compra de produtos e atualização de estoque
+- [x] Popup de confirmação de compra com retorno para página de produtos
+- [ ] View de contatos
+- [ ] Requisitos, etc no README.md

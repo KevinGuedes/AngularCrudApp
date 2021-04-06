@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/components/category/category.model';
 import { CategoryService } from 'src/app/components/category/category.service';
-import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { Product } from 'src/app/components/product/product.model';
 import { ProductService } from 'src/app/components/product/product.service';
 import { HeaderService } from 'src/app/components/template/header/header.service';
@@ -48,7 +48,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProduct(): void {
-    this.productService.readByPriceRangeAndCategory(this.minPrice, /*this.maxPrice*/ 100000000, this.categoryId, this.productName).subscribe(products => {
+    this.productService.readByPriceRangeAndCategory(this.minPrice, this.maxPrice, this.categoryId, this.productName).subscribe(products => {
       this.dataSource = new MatTableDataSource(products)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

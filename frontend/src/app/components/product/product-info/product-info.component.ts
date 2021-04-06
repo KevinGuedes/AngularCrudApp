@@ -14,11 +14,19 @@ export class ProductInfoComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.product = {
+      name: '',
+      price: null,
+      description: null,
+      amount: null,
+      category: '',
+      categoryId: null,
+    }
+
     const id = this.route.snapshot.paramMap.get('id');
     this.productService.readById(Number(id)).subscribe(product => {
       this.product = product;

@@ -1,0 +1,26 @@
+button + button {
+    margin-left: 20px;
+}
+
+mat-card-content {
+    padding-top: 20px;
+}
+
+.purchase-data {
+    display: flex;
+    flex-direction: row;
+}
+.btn-finish {
+    color: #fff;
+    background-color: #34d170;
+}
+
+.header{ 
+    padding-top: 8px;
+}
+
+.slider {
+    margin-top: 25px;
+    width: 30%;
+    display: flex;
+}
