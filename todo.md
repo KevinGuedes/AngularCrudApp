@@ -8,6 +8,6 @@
 - [x] Card de informações do produto
 - [x] Compra de produtos e atualização de estoque
 - [x] Popup de confirmação de compra com retorno para página de produtos
-- [ ] View de contatos
+- [x] View de contatos
 - [ ] Requisitos, etc no README.md
-- [ ] Alterar icon dos steps
+- [x] Alterar icon dos steps
