@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/components/category/category.model';
 import { CategoryService } from 'src/app/components/category/category.service';
-import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { Product } from 'src/app/components/product/product.model';
 import { ProductService } from 'src/app/components/product/product.service';
 import { HeaderService } from 'src/app/components/template/header/header.service';

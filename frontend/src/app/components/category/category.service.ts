@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { CustomSnackBarService } from '../message/custom-snack-bar.service';
+import { CustomSnackBarService } from '../message/custom-snack-bar/custom-snack-bar.service';
 import { Category } from './category.model';
 
 @Injectable({
