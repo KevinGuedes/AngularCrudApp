@@ -1,0 +1,31 @@
+.header-image {
+  background-image: url('https://media-exp1.licdn.com/dms/image/C4E03AQGnciDqdwgzng/profile-displayphoto-shrink_400_400/0/1579716359868?e=1623283200&v=beta&t=AAfJeus_OJmw_FZVTtJ-y1WgRVw1ab-_O888dY4chhE');
+  background-size: cover;
+}
+
+.skills{
+    padding-bottom: 16px;
+}
+
+.contact {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+.contact-links {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-list i {
+    padding-right: 10px;
+}

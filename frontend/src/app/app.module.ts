@@ -43,8 +43,8 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDialogComponent } from './components/message/custom-dialog/custom-dialog.component';
-import { MatIconModule } from '@angular/material/icon';
-
+import { ContactComponent } from './views/contact/contact.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -66,7 +66,8 @@ registerLocaleData(localePt)
     CategoryReadComponent,
     ProductInfoComponent,
     ProductBuyComponent,
-    CustomDialogComponent
+    CustomDialogComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +92,7 @@ registerLocaleData(localePt)
     MatStepperModule,
     MatSliderModule,
     MatDialogModule,
-    MatIconModule
+    MatExpansionModule,
   ],
   providers: [{
     provide: LOCALE_ID,
