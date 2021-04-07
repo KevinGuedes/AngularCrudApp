@@ -43,6 +43,8 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDialogComponent } from './components/message/custom-dialog/custom-dialog.component';
+import { ContactComponent } from './views/contact/contact.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -64,7 +66,8 @@ registerLocaleData(localePt)
     CategoryReadComponent,
     ProductInfoComponent,
     ProductBuyComponent,
-    CustomDialogComponent
+    CustomDialogComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,11 +91,12 @@ registerLocaleData(localePt)
     ReactiveFormsModule,
     MatStepperModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
   ],
   providers: [{
     provide: LOCALE_ID,
-    useValue: 'pt-BR'
+    useValue: 'pt-BR',
   }], //services expostos fora do módulo próprio do service
   bootstrap: [AppComponent],
   entryComponents: [

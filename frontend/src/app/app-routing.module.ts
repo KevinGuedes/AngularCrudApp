@@ -8,6 +8,7 @@ import { ProductDeleteComponent } from './components/product/product-delete/prod
 import { ProductSearchComponent } from './views/product-search/product-search.component';
 import { ProductInfoComponent } from './components/product/product-info/product-info.component';
 import { ProductBuyComponent } from './components/product/product-buy/product-buy.component';
+import { ContactComponent } from './views/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: "products/buy/:id",
     component: ProductBuyComponent
+  },
+  {
+    path: "contact",
+    component: ContactComponent
   }
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ActivatedRoute } from '@angular/router';
@@ -7,13 +7,17 @@ import { Product } from '../product.model';
 import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomDialogComponent } from '../../message/custom-dialog/custom-dialog.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-product-buy',
   templateUrl: './product-buy.component.html',
   styleUrls: ['./product-buy.component.css'],
   providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {
+      showError: true,
+      displayDefaultIndicatorType: false
+    }
   }]
 })
 export class ProductBuyComponent implements OnInit {
@@ -23,13 +27,14 @@ export class ProductBuyComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   product: Product;
-  min: number;
   max: number;
-  step: number = 1;
   thumbLabel: boolean = true;
-  amount: number = 1;
-  total: number;
+  total: number = 0;
   hideInput: boolean = true;
+  purchaseEnabled: boolean = false;
+  formCompleted: boolean = false;
+
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -40,6 +45,7 @@ export class ProductBuyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.product = {
       name: '',
       price: null,
@@ -52,7 +58,6 @@ export class ProductBuyComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.productService.readById(Number(id)).subscribe(product => {
       this.product = product;
-      this.total = product.price;
       this.max = product.amount;
     })
 
@@ -69,16 +74,21 @@ export class ProductBuyComponent implements OnInit {
     })
   }
 
-  onChange() {
-    this.total = this.amount * this.product.price;
+  onChange(): void {
+    this.total = this.thirdFormGroup.value.amount * this.product.price;
+    if (this.thirdFormGroup.value.amount > 0)
+      this.purchaseEnabled = true;
+    else {
+      this.purchaseEnabled = false;
+    }
   }
 
   finishPurchase(): void {
-    if (!this.firstFormGroup.valid || !this.secondFormGroup.valid) {
+    if ((!this.firstFormGroup.valid || !this.secondFormGroup.valid) && this.purchaseEnabled) {
       this.customSnackBarService.warningMessage('Enter all the necessary data to finish the purchased')
     }
     else {
-      this.product.amount = this.product.amount - this.amount;
+      this.product.amount = this.product.amount - this.thirdFormGroup.value.amount;
       this.productService.update(this.product).subscribe(() => {
         this.dialog.open(CustomDialogComponent, {
           width: '30%',
@@ -89,20 +99,4 @@ export class ProductBuyComponent implements OnInit {
       })
     }
   }
-  // this.dialog.open(CustomDialogComponent, {
-  //   data: {
-  //     name: this.firstFormGroup.value.customer
-  //   }
-  // });
-
 }
-
-
-
-// @Component({
-//   selector: 'app-dialog',
-//   templateUrl: './custom-dialog.component.html',
-// })
-// export class CustomDialogComponent {
-//   constructor(@Inject(MAT_DIALOG_DATA) public data: { name: string }) { }
-// }

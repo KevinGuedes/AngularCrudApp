@@ -10,9 +10,15 @@ mat-card-content {
     display: flex;
     flex-direction: row;
 }
+
 .btn-finish {
     color: #fff;
     background-color: #34d170;
+}
+
+.btn-error {
+    color: #fff;
+    background-color: #e35e6b;
 }
 
 .header{ 
