@@ -45,10 +45,12 @@ app.post('/products', (req, res) => {
                         })
                     }
                     catch (error) {
+                        console.log(error.message)
                         res.status(200).send(error.message)
                     }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -71,10 +73,12 @@ app.put('/products/:id', (req, res) => {
                         res.send(product)
                     }
                     catch (error) {
+                        console.log(error.message)
                         res.status(200).send(error.message)
                     }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -95,10 +99,12 @@ app.get('/products', (req, res) => {
                     res.json(products)
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.send(error.message)
             }
         )
@@ -115,10 +121,12 @@ app.delete('/products/:id', (req, res) => {
                     })
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -138,10 +146,12 @@ app.post('/category', (req, res) => {
                         })
                     }
                     catch (error) {
+                        console.log(error.message)
                         res.status(200).send(error.message)
                     }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -164,10 +174,12 @@ app.put('/category/:id', (req, res) => {
                         res.send(category)
                     }
                     catch (error) {
+                        console.log(error.message)
                         res.status(200).send(error.message)
                     }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -188,10 +200,12 @@ app.get('/category', (req, res) => {
                     res.json(categories)
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.send(error.message)
             }
         )
@@ -208,10 +222,12 @@ app.delete('/category/:id', (req, res) => {
                     })
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -227,10 +243,12 @@ app.get('/products/:id', (req, res) => {
                     res.json(product)
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -245,10 +263,12 @@ app.post('/products/search', (req, res) => {
                     res.json(products)
                 }
                 catch (error) {
+                    console.log(error.message)
                     res.status(200).send(error.message)
                 }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
