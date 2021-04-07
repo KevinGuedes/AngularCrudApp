@@ -46,6 +46,10 @@ import { CustomDialogComponent } from './components/message/custom-dialog/custom
 import { ContactComponent } from './views/contact/contact.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
+import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
+import { CategoryCrudComponent } from './views/category-crud/category-crud.component';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -69,6 +73,10 @@ registerLocaleData(localePt)
     ProductBuyComponent,
     CustomDialogComponent,
     ContactComponent,
+    CategoryCreateComponent,
+    CategoryDeleteComponent,
+    CategoryUpdateComponent,
+    CategoryCrudComponent,
   ],
   imports: [
     BrowserModule,

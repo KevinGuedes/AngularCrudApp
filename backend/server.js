@@ -274,6 +274,26 @@ app.post('/products/search', (req, res) => {
         )
 })
 
+app.get('/category/:id', (req, res) => {
+    Database
+        .then(
+            async (db) => {
+                try {
+                    const category = await readCategoryById(db, req.params.id)
+                    res.json(category)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
+            },
+            (error) => {
+                console.log(error.message)
+                res.status(200).send(error.message)
+            }
+        )
+})
+
 app.listen(port, () => {
     console.log(`http://localhost:${port}/`)
 })
