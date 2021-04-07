@@ -17,7 +17,7 @@ import { HeaderService } from 'src/app/components/template/header/header.service
 export class ProductSearchComponent implements OnInit {
 
   categories: Category[];
-  hideSearchTable: boolean = true;
+  isSearchCompleted: boolean = false;
   minPrice: number = 0;
   maxPrice: number = 0;
   categoryId?: number;
@@ -52,17 +52,18 @@ export class ProductSearchComponent implements OnInit {
   searchProduct(): void {
     this.showProgressBar = true;
 
-    this.productService.readByPriceRangeAndCategory(this.minPrice, 100000000, this.categoryId, this.productName).subscribe(products => {
+    this.productService.readByPriceRangeAndCategory(this.minPrice, this.maxPrice, this.categoryId, this.productName).subscribe(products => {
       this.dataSource = new MatTableDataSource(products)
       this.showProgressBar = false;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       if (products.length > 0) {
         this.customSnackBarService.successMessage('Search completed');
-        this.hideSearchTable = false;
+        this.isSearchCompleted = true;
       }
       else {
         this.customSnackBarService.warningMessage('No results found');
+        this.isSearchCompleted = false;
       }
     })
   }

@@ -23,7 +23,7 @@
 
     <mat-progress-bar class="progress-bar" *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
 
-    <div class="table-container" [hidden]="hideSearchTable">
+    <div class="table-container" [hidden]="!isSearchCompleted">
         <mat-form-field class="filter-field">
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Product Name" #input>
