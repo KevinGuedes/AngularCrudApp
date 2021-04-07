@@ -89,7 +89,7 @@ async function searchProduct(db, minPrice, maxPrice, categoryId, productName) {
                 description,
                 amount,
                 category,
-                categoryId
+                categoryId,
             FROM
                 products as P
             INNER JOIN
