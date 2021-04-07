@@ -15,7 +15,7 @@ export class ContactComponent implements OnInit {
   ) {
     headerService.headerData = {
       title: 'Contact',
-      icon: 'contact_page',
+      icon: 'contacts',
       routeUrl: '/contact'
     };
   }
