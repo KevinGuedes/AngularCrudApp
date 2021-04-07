@@ -15,6 +15,7 @@ export class ProductReadComponent implements OnInit {
   dataSource: MatTableDataSource<Product>;
   displayedColumns = ['id', 'name', 'price', 'amount', 'category', 'actions']
   showProgressBar: boolean;
+  isSearchCompleted: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,6 +30,7 @@ export class ProductReadComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.showProgressBar = false;
+      this.isSearchCompleted = true;
     })
   }
 

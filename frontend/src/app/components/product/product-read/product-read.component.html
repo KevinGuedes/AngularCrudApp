@@ -1,7 +1,6 @@
 <!-- criado via ng generate @angular/material:table <component-name> -->
 <!-- https://material.angular.io/guide/schematics -->
 
-
 <mat-form-field class="filter-field">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Product Name" #input>
@@ -9,7 +8,7 @@
 
 <mat-progress-bar class="progress-bar" *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
 
-<div class="mat-elevation-z4">
+<div [hidden]="!isSearchCompleted">
     <table mat-table [dataSource]="dataSource" matSort class="columns-fixed">
         <!-- Id Column -->
         <ng-container matColumnDef="id">
