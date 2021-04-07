@@ -3,7 +3,7 @@
 - [x] Adicionar categoria de produtos
 - [x] Mensageria para campos incompletos
 - [x] Pesquisa de produtos por categoria e por nome
-- [ ] Tratativa de exceções no backend
+- [x] Tratativa de exceções no backend
 - [ ] CRUD de categorias
 - [x] Card de informações do produto
 - [x] Compra de produtos e atualização de estoque

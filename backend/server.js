@@ -38,12 +38,19 @@ app.post('/products', (req, res) => {
         Database
             .then(
                 async (db) => {
-                    await insertProduct(db, jsonProductToDTO(req.body))
-                    res.send({
-                        success: true,
-                    })
+                    try {
+                        await insertProduct(db, jsonProductToDTO(req.body))
+                        res.send({
+                            success: true,
+                        })
+                    }
+                    catch (error) {
+                        console.log(error.message)
+                        res.status(200).send(error.message)
+                    }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -60,11 +67,18 @@ app.put('/products/:id', (req, res) => {
         Database
             .then(
                 async (db) => {
-                    const product = jsonProductToDTO(req.body)
-                    await updateProduct(db, product, req.params.id)
-                    res.send(product)
+                    try {
+                        const product = jsonProductToDTO(req.body)
+                        await updateProduct(db, product, req.params.id)
+                        res.send(product)
+                    }
+                    catch (error) {
+                        console.log(error.message)
+                        res.status(200).send(error.message)
+                    }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -80,10 +94,17 @@ app.get('/products', (req, res) => {
     Database
         .then(
             async (db) => {
-                const products = await readProduct(db)
-                res.json(products)
+                try {
+                    const products = await readProduct(db)
+                    res.json(products)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.send(error.message)
             }
         )
@@ -93,12 +114,19 @@ app.delete('/products/:id', (req, res) => {
     Database
         .then(
             async (db) => {
-                await deleteProduct(db, req.params.id)
-                res.send({
-                    success: true,
-                })
+                try {
+                    await deleteProduct(db, req.params.id)
+                    res.send({
+                        success: true,
+                    })
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -111,12 +139,19 @@ app.post('/category', (req, res) => {
         Database
             .then(
                 async (db) => {
-                    await insertCategory(db, jsonCategoryToDTO(req.body))
-                    res.send({
-                        success: true,
-                    })
+                    try {
+                        await insertCategory(db, jsonCategoryToDTO(req.body))
+                        res.send({
+                            success: true,
+                        })
+                    }
+                    catch (error) {
+                        console.log(error.message)
+                        res.status(200).send(error.message)
+                    }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -133,11 +168,18 @@ app.put('/category/:id', (req, res) => {
         Database
             .then(
                 async (db) => {
-                    const category = jsonCategoryToDTO(req.body)
-                    await updateCategory(db, category, req.params.id)
-                    res.send(category)
+                    try {
+                        const category = jsonCategoryToDTO(req.body)
+                        await updateCategory(db, category, req.params.id)
+                        res.send(category)
+                    }
+                    catch (error) {
+                        console.log(error.message)
+                        res.status(200).send(error.message)
+                    }
                 },
                 (error) => {
+                    console.log(error.message)
                     res.send(error.message)
                 }
             )
@@ -153,10 +195,17 @@ app.get('/category', (req, res) => {
     Database
         .then(
             async (db) => {
-                const categories = await readCategory(db)
-                res.json(categories)
+                try {
+                    const categories = await readCategory(db)
+                    res.json(categories)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.send(error.message)
             }
         )
@@ -166,12 +215,19 @@ app.delete('/category/:id', (req, res) => {
     Database
         .then(
             async (db) => {
-                await deleteCategory(db, req.params.id)
-                res.send({
-                    success: true,
-                })
+                try {
+                    await deleteCategory(db, req.params.id)
+                    res.send({
+                        success: true,
+                    })
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -182,10 +238,17 @@ app.get('/products/:id', (req, res) => {
     Database
         .then(
             async (db) => {
-                const product = await readProductById(db, req.params.id)
-                res.json(product)
+                try {
+                    const product = await readProductById(db, req.params.id)
+                    res.json(product)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )
@@ -195,10 +258,17 @@ app.post('/products/search', (req, res) => {
     Database
         .then(
             async (db) => {
-                const products = await searchProduct(db, req.body.minPrice, req.body.maxPrice, req.body.categoryId, req.body.productName)
-                res.json(products)
+                try {
+                    const products = await searchProduct(db, req.body.minPrice, req.body.maxPrice, req.body.categoryId, req.body.productName)
+                    res.json(products)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
             },
             (error) => {
+                console.log(error.message)
                 res.status(200).send(error.message)
             }
         )

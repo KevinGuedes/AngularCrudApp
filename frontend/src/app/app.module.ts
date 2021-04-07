@@ -45,6 +45,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDialogComponent } from './components/message/custom-dialog/custom-dialog.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 registerLocaleData(localePt)
 
 @NgModule({
@@ -93,6 +94,7 @@ registerLocaleData(localePt)
     MatSliderModule,
     MatDialogModule,
     MatExpansionModule,
+    MatProgressBarModule
   ],
   providers: [{
     provide: LOCALE_ID,
