@@ -18,6 +18,13 @@ export class CategoryService {
     private customSnackBarService: CustomSnackBarService
   ) { }
 
+  create(category: Category): Observable<Category[]> {
+    return this.http.post<Category[]>(this.baseUlr, category).pipe(
+      map(c => c),
+      catchError(error => this.errorHandler(error))
+    );
+  }
+
   read(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUlr).pipe(
       map(c => c),
@@ -32,9 +39,24 @@ export class CategoryService {
     );
   }
 
+  readByName(name: string): Observable<Category> {
+    return this.http.get<Category>(`${this.baseUlr}/${name}`).pipe(
+      map(c => c),
+      catchError(error => this.errorHandler(error))
+    );
+  }
+
   update(category: Category): Observable<Category> {
     return this.http.put<Category>(`${this.baseUlr}/${category.id}`, category).pipe(
       map(c => c),
+      catchError(error => this.errorHandler(error))
+    );
+  }
+
+  delete(id: number): Observable<Category> {
+    const url = `${this.baseUlr}/${id}`;
+    return this.http.delete<Category>(url).pipe(
+      map(p => p),
       catchError(error => this.errorHandler(error))
     );
   }

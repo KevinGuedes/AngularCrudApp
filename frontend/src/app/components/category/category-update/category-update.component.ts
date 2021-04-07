@@ -21,6 +21,10 @@ export class CategoryUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.category = {
+      category: '',
+    }
+
     const id = this.route.snapshot.paramMap.get('id');
     this.categoryService.readById(Number(id)).subscribe(category => {
       this.category = category;

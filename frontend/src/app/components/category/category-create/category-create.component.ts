@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
+import { Category } from '../category.model';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-category-create',
@@ -7,9 +11,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryCreateComponent implements OnInit {
 
-  constructor() { }
+  category: Category;
+
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router,
+    private customSnackBarService: CustomSnackBarService
+  ) { }
 
   ngOnInit(): void {
+    this.category = {
+      category: '',
+    }
   }
 
+  createCategory(): void {
+    const isValidCategory = this.categoryService.validateCategoryData(this.category);
+
+    if (isValidCategory) {
+      this.categoryService.readByName(`${this.category.category[0].toUpperCase()}` + `${this.category.category.slice(1)}`).subscribe(existingCategory => {
+        console.log(existingCategory)
+        if (existingCategory) {
+          this.customSnackBarService.warningMessage('This category already exist')
+        }
+        else {
+          this.categoryService.create(this.category).subscribe(() => {
+            this.customSnackBarService.successMessage('Category created')
+            this.router.navigate(['/category'])
+          })
+        }
+      });
+
+
+
+    }
+  }
+
+  cancel(): void {
+    this.router.navigate(['category'])
+  }
 }

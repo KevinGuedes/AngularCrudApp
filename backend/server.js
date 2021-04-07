@@ -24,6 +24,7 @@ const {
     readCategoryById,
     readCategory,
     deleteCategory,
+    readCategoryByName,
 } = require('./database/categoryProcedures')
 
 // Middlewares
@@ -293,6 +294,27 @@ app.get('/category/:id', (req, res) => {
             }
         )
 })
+
+app.get('/category/:name', (req, res) => {
+    Database
+        .then(
+            async (db) => {
+                try {
+                    const category = await readCategoryByName(db, req.params.name)
+                    res.json(category)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    res.status(200).send(error.message)
+                }
+            },
+            (error) => {
+                console.log(error.message)
+                res.status(200).send(error.message)
+            }
+        )
+})
+
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}/`)
