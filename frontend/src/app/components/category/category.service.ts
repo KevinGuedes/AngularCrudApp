@@ -40,7 +40,7 @@ export class CategoryService {
   }
 
   readByName(name: string): Observable<Category> {
-    return this.http.get<Category>(`${this.baseUlr}/${name}`).pipe(
+    return this.http.get<Category>(`${this.baseUlr}/name/${name}`).pipe(
       map(c => c),
       catchError(error => this.errorHandler(error))
     );

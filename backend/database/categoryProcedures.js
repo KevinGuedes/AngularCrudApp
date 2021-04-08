@@ -46,7 +46,7 @@ async function readCategoryByName(db, name) {
         FROM
             category
         WHERE
-            name = ${name}
+            name = "${name}"
     `)
 }
 

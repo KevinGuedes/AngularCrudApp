@@ -295,7 +295,7 @@ app.get('/category/:id', (req, res) => {
         )
 })
 
-app.get('/category/:name', (req, res) => {
+app.get('/category/name/:name', (req, res) => {
     Database
         .then(
             async (db) => {
