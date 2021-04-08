@@ -35,11 +35,11 @@ async function readProduct(db) {
     return await db.all(`
         SELECT
             P.id,
-            name,
+            P.name,
             price,
             description,
             amount,
-            category,
+            C.name AS category,
             categoryId
         FROM
             products as P
@@ -59,11 +59,11 @@ async function readProductById(db, id) {
     return await db.get(`
         SELECT 
             P.id,
-            name,
+            P.name,
             price,
             description,
             amount,
-            category,
+            C.name AS category,
             categoryId
         FROM 
             products as P
@@ -79,16 +79,16 @@ async function readProductById(db, id) {
 async function searchProduct(db, minPrice, maxPrice, categoryId, productName) {
 
     const searchByCategoryId = categoryId ? `AND categoryId = ${categoryId} ` : ''
-    const searchByProductName = productName ? `AND name LIKE '%${productName}%' ` : ''
+    const searchByProductName = productName ? `AND P.name LIKE '%${productName}%' ` : ''
 
     return await db.all(`
             SELECT
                 P.id,
-                name,
+                P.name,
                 price,
                 description,
                 amount,
-                category,
+                C.name AS category,
                 categoryId
             FROM
                 products as P

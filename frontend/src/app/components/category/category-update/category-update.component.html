@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>Edit Category</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="category.name" name="name" required>
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button (click)="updateCategory()" color="primary">Update</button>
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+</mat-card>

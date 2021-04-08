@@ -1,11 +1,11 @@
 function jsonCategoryToDTO(jsonCategory) {
-    if (!jsonCategory.category) {
+    if (!jsonCategory.name) {
         throw new Error('Invalid category.')
     }
     else {
         return {
             id: jsonCategory.id || null,
-            category: jsonCategory.category,
+            name: jsonCategory.name,
         }
     }
 }

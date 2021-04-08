@@ -26,11 +26,14 @@ export class ProductReadComponent implements OnInit {
     this.showProgressBar = true;
 
     this.productService.read().subscribe(products => {
-      this.dataSource = new MatTableDataSource(products)
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      if (products.length > 0) {
+        this.dataSource = new MatTableDataSource(products)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.isSearchCompleted = true;
+      }
+
       this.showProgressBar = false;
-      this.isSearchCompleted = true;
     })
   }
 

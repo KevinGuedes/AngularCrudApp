@@ -3,9 +3,9 @@ async function insertCategory(db, category) {
 
     await db.run(`
         INSERT INTO category (
-            category
+            name
         ) VALUES (
-            "${category.category}"
+            "${category.name}"
         );
     `)
 }
@@ -15,7 +15,7 @@ async function updateCategory(db, category, id) {
     await db.run(`
         UPDATE category 
         SET 
-            category = "${category.name}"
+            name = "${category.name}"
         WHERE 
             id = ${id}
     `)
@@ -40,10 +40,21 @@ async function readCategoryById(db, id) {
     `)
 }
 
+async function readCategoryByName(db, name) {
+    return await db.get(`
+        SELECT * 
+        FROM
+            category
+        WHERE
+            name = "${name}"
+    `)
+}
+
 module.exports = {
     insertCategory,
     updateCategory,
     readCategory,
     readCategoryById,
     deleteCategory,
+    readCategoryByName
 }

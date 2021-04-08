@@ -14,7 +14,7 @@
             <mat-label>Category</mat-label>
             <mat-select [(ngModel)]="categoryId" name="categoryId">
                 <mat-option value="" selected hidden>All</mat-option>
-                <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.category }} </mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.id"> {{ category.name }} </mat-option>
             </mat-select>
         </mat-form-field>
     </form>
