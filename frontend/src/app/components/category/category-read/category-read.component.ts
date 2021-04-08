@@ -29,7 +29,6 @@ export class CategoryReadComponent implements OnInit {
 
     this.categoryService.read().subscribe(categories => {
       this.dataSource = new MatTableDataSource(categories)
-      console.log(categories)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.showProgressBar = false;

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Product } from '../product.model';
 import { ProductService } from './../product.service'
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-product-read',
@@ -11,6 +12,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./product-read.component.css']
 })
 export class ProductReadComponent implements OnInit {
+
+  @Input('productsData') productsData$: Observable<Product[]>;
+  @Input() pageSizeOptions: number[];
+  @Input() pageSize: number;
 
   dataSource: MatTableDataSource<Product>;
   displayedColumns = ['id', 'name', 'price', 'amount', 'category', 'actions']
@@ -20,12 +25,12 @@ export class ProductReadComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productService: ProductService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.showProgressBar = true;
 
-    this.productService.read().subscribe(products => {
+    this.productsData$.subscribe(products => {
       if (products.length > 0) {
         this.dataSource = new MatTableDataSource(products)
         this.dataSource.paginator = this.paginator;

@@ -2,5 +2,5 @@
     <mat-card-title>Products</mat-card-title>
 
     <button mat-raised-button (click)="navigateToProductCreate()" color="primary">New Product</button>
-    <app-product-read></app-product-read>
+    <app-product-read [productsData]="productsData$" [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 30]"></app-product-read>
 </mat-card>
