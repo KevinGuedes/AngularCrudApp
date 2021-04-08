@@ -79,7 +79,7 @@ async function readProductById(db, id) {
 async function searchProduct(db, minPrice, maxPrice, categoryId, productName) {
 
     const searchByCategoryId = categoryId ? `AND categoryId = ${categoryId} ` : ''
-    const searchByProductName = productName ? `AND name LIKE '%${productName}%' ` : ''
+    const searchByProductName = productName ? `AND P.name LIKE '%${productName}%' ` : ''
 
     return await db.all(`
             SELECT

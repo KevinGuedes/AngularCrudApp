@@ -235,7 +235,8 @@ app.delete('/category/:id', (req, res) => {
 })
 //#endregion
 
-app.get('/products/:id', (req, res) => {
+app.get('/products/all/:id', (req, res) => {
+    console.log('entrou aqui')
     Database
         .then(
             async (db) => {
@@ -255,12 +256,12 @@ app.get('/products/:id', (req, res) => {
         )
 })
 
-app.post('/products/search', (req, res) => {
+app.get('/products/search', (req, res) => {
     Database
         .then(
             async (db) => {
                 try {
-                    const products = await searchProduct(db, req.body.minPrice, req.body.maxPrice, req.body.categoryId, req.body.productName)
+                    const products = await searchProduct(db, req.query.minPrice, req.query.maxPrice, req.query.categoryId, req.query.productName)
                     res.json(products)
                 }
                 catch (error) {
@@ -274,6 +275,25 @@ app.post('/products/search', (req, res) => {
             }
         )
 })
+// app.post('/products/search', (req, res) => {
+//     Database
+//         .then(
+//             async (db) => {
+//                 try {
+//                     const products = await searchProduct(db, req.body.minPrice, req.body.maxPrice, req.body.categoryId, req.body.productName)
+//                     res.json(products)
+//                 }
+//                 catch (error) {
+//                     console.log(error.message)
+//                     res.status(200).send(error.message)
+//                 }
+//             },
+//             (error) => {
+//                 console.log(error.message)
+//                 res.status(200).send(error.message)
+//             }
+//         )
+// })
 
 app.get('/category/:id', (req, res) => {
     Database

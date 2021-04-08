@@ -32,7 +32,7 @@ export class ProductService {
   }
 
   readById(id: number): Observable<Product> {
-    const url = `${this.baseUlr}/${id}`;
+    const url: string = `${this.baseUlr}/all/${id}`;
     return this.http.get<Product>(url).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
@@ -40,20 +40,17 @@ export class ProductService {
   }
 
   readByPriceRangeAndCategory(minPrice: number, maxPrice: number, categoryId: number, productName: string): Observable<Product[]> {
-    const url = `${this.baseUlr}/search`;
 
     if (minPrice > maxPrice) {
       [maxPrice, minPrice] = [minPrice, maxPrice]
     }
 
-    const searchParameter = {
-      maxPrice: maxPrice,
-      minPrice: minPrice,
-      categoryId: categoryId,
-      productName: productName
-    }
+    const categoryIdQueryString = categoryId ? `&categoryId=${categoryId}` : '';
+    const productNameQueryString = productName ? `&productName=${productName}` : '';
+    const queryString: string = `?minPrice=${minPrice}&maxPrice=${maxPrice}${categoryIdQueryString}${productNameQueryString}`;
+    const url: string = `${this.baseUlr}/search${queryString}`;
 
-    return this.http.post<Product[]>(url, searchParameter).pipe(
+    return this.http.get<Product[]>(url).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
     );
@@ -82,6 +79,7 @@ export class ProductService {
 
   validateProductData(product: Product): boolean {
     for (let [key, value] of Object.entries(product)) {
+      console.log(key, value)
       if (!value) {
         this.customSnackBarService.warningMessage(`Enter the product ${key == 'categoryId' ? 'category' : key}`)
         return false;
