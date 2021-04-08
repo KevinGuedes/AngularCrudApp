@@ -22,6 +22,7 @@ export class ProductCreateComponent implements OnInit {
     amount: null,
     description: '',
     categoryId: null,
+    category: '',
   }
 
   constructor(

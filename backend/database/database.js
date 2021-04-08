@@ -15,7 +15,7 @@ function execute(db) {
         
         CREATE TABLE IF NOT EXISTS category (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            category TEXT NOT NULL
+            name TEXT NOT NULL
         );
     `)
 }

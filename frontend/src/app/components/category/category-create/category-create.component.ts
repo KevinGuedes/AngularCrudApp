@@ -21,7 +21,7 @@ export class CategoryCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = {
-      category: '',
+      name: '',
     }
   }
 
@@ -29,7 +29,7 @@ export class CategoryCreateComponent implements OnInit {
     const isValidCategory = this.categoryService.validateCategoryData(this.category);
 
     if (isValidCategory) {
-      this.categoryService.readByName(`${this.category.category[0].toUpperCase()}` + `${this.category.category.slice(1)}`).subscribe(existingCategory => {
+      this.categoryService.readByName(`${this.category.name[0].toUpperCase()}` + `${this.category.name.slice(1)}`).subscribe(existingCategory => {
         console.log(existingCategory)
         if (existingCategory) {
           this.customSnackBarService.warningMessage('This category already exist')
@@ -41,9 +41,6 @@ export class CategoryCreateComponent implements OnInit {
           })
         }
       });
-
-
-
     }
   }
 

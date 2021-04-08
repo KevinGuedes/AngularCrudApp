@@ -35,11 +35,11 @@ async function readProduct(db) {
     return await db.all(`
         SELECT
             P.id,
-            name,
+            P.name,
             price,
             description,
             amount,
-            category,
+            C.name AS category,
             categoryId
         FROM
             products as P
@@ -59,11 +59,11 @@ async function readProductById(db, id) {
     return await db.get(`
         SELECT 
             P.id,
-            name,
+            P.name,
             price,
             description,
             amount,
-            category,
+            C.name AS category,
             categoryId
         FROM 
             products as P
@@ -84,11 +84,11 @@ async function searchProduct(db, minPrice, maxPrice, categoryId, productName) {
     return await db.all(`
             SELECT
                 P.id,
-                name,
+                P.name,
                 price,
                 description,
                 amount,
-                category,
+                C.name AS category,
                 categoryId
             FROM
                 products as P

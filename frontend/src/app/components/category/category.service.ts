@@ -67,7 +67,7 @@ export class CategoryService {
   }
 
   validateCategoryData(category: Category): boolean {
-    if (!category.category) {
+    if (!category.name) {
       this.customSnackBarService.warningMessage(`Enter the category name`)
       return false;
     }

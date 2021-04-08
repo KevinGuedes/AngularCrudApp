@@ -22,7 +22,7 @@ export class CategoryUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = {
-      category: '',
+      name: '',
     }
 
     const id = this.route.snapshot.paramMap.get('id');
