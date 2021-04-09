@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class ProductCrudComponent implements OnInit {
 
   productsData$: Observable<Product[]>;
+  renderChildComponent: boolean = false;
 
   constructor(
     private router: Router,
@@ -31,6 +32,7 @@ export class ProductCrudComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsData$ = this.productService.read();
+    this.renderChildComponent = true;
   }
 
   navigateToProductCreate() {

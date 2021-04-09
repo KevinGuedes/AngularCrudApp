@@ -5,6 +5,7 @@ import { Product } from '../product.model';
 import { ProductService } from './../product.service'
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs/internal/Observable';
+import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   selector: 'app-product-read',
@@ -25,7 +26,9 @@ export class ProductReadComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(
+    private customSnackBarService: CustomSnackBarService
+  ) { }
 
   ngOnInit(): void {
     this.showProgressBar = true;
@@ -36,6 +39,10 @@ export class ProductReadComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.isSearchCompleted = true;
+      }
+      else {
+        this.customSnackBarService.warningMessage('No results found');
+        this.isSearchCompleted = false;
       }
 
       this.showProgressBar = false;

@@ -39,7 +39,7 @@ export class ProductService {
     );
   }
 
-  readByPriceRangeAndCategory(minPrice: number, maxPrice: number, categoryId: number, productName: string): Observable<Product[]> {
+  readByPriceRangeAndCategoryAndName(minPrice: number, maxPrice: number, categoryId: number, productName: string): Observable<Product[]> {
 
     if (minPrice > maxPrice) {
       [maxPrice, minPrice] = [minPrice, maxPrice]
@@ -48,6 +48,7 @@ export class ProductService {
     const categoryIdQueryString = categoryId ? `&categoryId=${categoryId}` : '';
     const productNameQueryString = productName ? `&productName=${productName}` : '';
     const queryString: string = `?minPrice=${minPrice}&maxPrice=${maxPrice}${categoryIdQueryString}${productNameQueryString}`;
+
     const url: string = `${this.baseUlr}/search${queryString}`;
 
     return this.http.get<Product[]>(url).pipe(
