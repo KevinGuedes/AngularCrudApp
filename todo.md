@@ -9,6 +9,8 @@
 - [x] Compra de produtos e atualização de estoque
 - [x] Popup de confirmação de compra com retorno para página de produtos
 - [x] View de contatos
-- [ ] Requisitos, etc no README.md
 - [x] Componente de product-read com Inputs e dados recebidos do componente pai
 - [x] Alterar icon dos steps
+- [ ] Requisitos, etc no README.md
+- [ ] Lazy loading
+- [ ] Unsubscribe

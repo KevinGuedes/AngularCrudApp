@@ -27,10 +27,10 @@ i {
     color: #3cade2
 }
 
-.filter-field {
-    margin-left: 20px;
-}
-
 .progress-bar {
     margin-bottom: 32px;
+}
+
+.filter-field {
+    margin-top: 16px;
 }

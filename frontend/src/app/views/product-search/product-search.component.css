@@ -1,19 +1,5 @@
 button { 
-    margin: 20px 15px 0 0;
-}
-
-table {
-    padding: 0 16px;
-    width: 100%;
-}
-
-i {
-    margin-right: 10px;
-}
-
-.columns-fixed {
-    table-layout: fixed;
-    width: 100%;
+    margin: 16px 16px 0 0;
 }
 
 .table-container {
@@ -30,10 +16,6 @@ i {
 
 .buy > i {
     color: #34d170;
-}
-
-.filter-field {
-    margin: 0 20px;
 }
 
 form {
@@ -56,4 +38,8 @@ mat-form-field {
 
 .progress-bar {
     margin-top: 32px;
+}
+
+.search {
+    margin-bottom: 16px;
 }

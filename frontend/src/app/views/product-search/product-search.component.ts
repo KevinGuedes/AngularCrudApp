@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,13 +30,14 @@ export class ProductSearchComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('tableContainer', { read: ViewContainerRef }) tableContainer: ViewContainerRef;
+  @ViewChild('tableTemplate', { read: TemplateRef }) _tableTemplate: TemplateRef<any>;
 
   productsData$: Observable<Product[]>;
 
   constructor(
     private productService: ProductService,
     private headerService: HeaderService,
-    private customSnackBarService: CustomSnackBarService,
     private categoryService: CategoryService
   ) {
     headerService.headerData = {
@@ -54,7 +55,9 @@ export class ProductSearchComponent implements OnInit {
 
   searchProduct(): void {
     this.productsData$ = this.productService.readByPriceRangeAndCategoryAndName(this.minPrice, this.maxPrice, this.categoryId, this.productName);
-    this.renderChildComponent = true;
+    this.tableContainer.clear();
+    let table = this._tableTemplate.createEmbeddedView(null);
+    this.tableContainer.insert(table);
   }
 
   applyFilter(event: Event): void {
