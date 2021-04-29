@@ -17,7 +17,7 @@ const {
     deleteProduct,
     readProductById,
     searchProduct
-} = require('./database/productProcedures')
+} = require('./database/procedures/productProcedures')
 const {
     insertCategory,
     updateCategory,
@@ -25,7 +25,7 @@ const {
     readCategory,
     deleteCategory,
     readCategoryByName,
-} = require('./database/categoryProcedures')
+} = require('./database/procedures/categoryProcedures')
 
 // Middlewares
 app
