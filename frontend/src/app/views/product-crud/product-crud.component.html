@@ -1,6 +1,9 @@
 <mat-card class="mat-elevation-z4">
-    <mat-card-title>Products</mat-card-title>
-
-    <button mat-raised-button (click)="navigateToProductCreate()" color="primary">New Product</button>
-    <app-product-read></app-product-read>
+    <div class="new-product">
+        <mat-card-title>Products</mat-card-title>
+        <button mat-raised-button (click)="navigateToProductCreate()" color="primary">New Product</button>
+    </div>
+    <mat-divider></mat-divider>
+    
+    <app-product-read [productsData]="productsData$" [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 30]"></app-product-read>
 </mat-card>

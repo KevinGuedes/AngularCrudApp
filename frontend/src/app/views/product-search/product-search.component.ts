@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
 import { Category } from 'src/app/components/category/category.model';
 import { CategoryService } from 'src/app/components/category/category.service';
 import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
@@ -25,15 +26,18 @@ export class ProductSearchComponent implements OnInit {
   dataSource: MatTableDataSource<Product>;
   displayedColumns = ['id', 'name', 'price', 'amount', 'category', 'actions']
   showProgressBar: boolean;
+  renderChildComponent: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('tableContainer', { read: ViewContainerRef }) tableContainer: ViewContainerRef;
+  @ViewChild('tableTemplate', { read: TemplateRef }) _tableTemplate: TemplateRef<any>;
 
+  productsData$: Observable<Product[]>;
 
   constructor(
     private productService: ProductService,
     private headerService: HeaderService,
-    private customSnackBarService: CustomSnackBarService,
     private categoryService: CategoryService
   ) {
     headerService.headerData = {
@@ -50,22 +54,10 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProduct(): void {
-    this.showProgressBar = true;
-
-    this.productService.readByPriceRangeAndCategory(this.minPrice, this.maxPrice, this.categoryId, this.productName).subscribe(products => {
-      this.dataSource = new MatTableDataSource(products)
-      this.showProgressBar = false;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      if (products.length > 0) {
-        this.customSnackBarService.successMessage('Search completed');
-        this.isSearchCompleted = true;
-      }
-      else {
-        this.customSnackBarService.warningMessage('No results found');
-        this.isSearchCompleted = false;
-      }
-    })
+    this.productsData$ = this.productService.readByPriceRangeAndCategoryAndName(this.minPrice, this.maxPrice, this.categoryId, this.productName);
+    this.tableContainer.clear();
+    let table = this._tableTemplate.createEmbeddedView(null);
+    this.tableContainer.insert(table);
   }
 
   applyFilter(event: Event): void {

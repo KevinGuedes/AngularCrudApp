@@ -4,10 +4,13 @@
 - [x] Mensageria para campos incompletos
 - [x] Pesquisa de produtos por categoria e por nome
 - [x] Tratativa de exceções no backend
-- [ ] CRUD de categorias
+- [x] CRUD de categorias
 - [x] Card de informações do produto
 - [x] Compra de produtos e atualização de estoque
 - [x] Popup de confirmação de compra com retorno para página de produtos
 - [x] View de contatos
-- [ ] Requisitos, etc no README.md
+- [x] Componente de product-read com Inputs e dados recebidos do componente pai
 - [x] Alterar icon dos steps
+- [ ] Requisitos, etc no README.md
+- [ ] Lazy loading
+- [ ] Unsubscribe
